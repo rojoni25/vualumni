@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+.title{
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 2px double #c44d2d;
+    margin-bottom: 10px;
+}
