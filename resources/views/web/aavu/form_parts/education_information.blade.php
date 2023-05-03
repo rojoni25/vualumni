@@ -248,7 +248,7 @@
             </div>
         </div>
     </div>
-    <a uk-switcher-item="previous" class="btn btn-success pull-left" href="javascript:void(0)">Personal Information</a>
-                    <input type="submit" id="educationFormSubmit" class="btn btn-success pull-right" value="Ocupation Information">
+    <a uk-switcher-item="previous" class="btn btn-success pull-left" href="javascript:void(0)">Back</a>
+                    <input type="submit" id="educationFormSubmit" class="btn btn-success pull-right" value="Save & Continue">
 </form>
 @endif

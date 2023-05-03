@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('nid')->nullable();
             $table->string('nid_photo')->nullable();
+            $table->string('certificate')->nullable();
             $table->string('status')->default('pending');
             $table->string('completed_steps')->default('0');
             $table->timestamps();

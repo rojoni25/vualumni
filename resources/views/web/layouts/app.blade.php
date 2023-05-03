@@ -170,7 +170,30 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #c44d2d;
         }
+        .page-body {
+		max-width: none !important;
+	}
     </style>
+    @if (Agent::isMobile())
+    <style>
+
+    .l-gnav-sub-inner{
+        height: 100%;
+    }
+    .l-gnav-sub{
+        height: 60vh;
+    }
+    .dropdown-menu>li>a{
+        font-size: 12px;
+    }
+    .l-header__logo-en{
+        height: 100%;
+    }
+    </style>
+
+    @else
+
+    @endif
     @stack('style')
 </head>
 

@@ -33,7 +33,7 @@
 
 		<div class="l-footer__inner row" style="align-content: center; align-items: center;">
 
-			<div class="col-md-3 col-sm-3 text-left">
+			<div class="col-md-6 col-sm-6 text-left">
 
 				<!-- <a href="https://vu.edu.bd/"><img style="background-color: white; padding: 5px 10px;" src="https://vu.edu.bd/img/logo.png" class="l-footer__body-logo" alt="Varendra University"></a> -->
 
@@ -77,14 +77,14 @@
 
 			</div>
 
-			<div class="col-md-6 col-sm-6">
+			{{-- <div class="col-md-6 col-sm-6">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d624.1993862072843!2d88.63344347211037!3d24.364909261117095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6e97f5311db3e803!2sVarendra%20University!5e0!3m2!1sen!2smm!4v1646650213757!5m2!1sen!2smm" width="100%" height="200px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-			</div>
+			</div> --}}
 
-			<div class="col-md-3 col-sm-3 text_right" style="/*position: absolute;*/ bottom: 0px; right: 0px; text-align: right;">
+			<div class="col-md-6 col-sm-6 text_right" style="/*position: absolute;*/ bottom: 0px; right: 0px; text-align: right;">
 
 
-				<a style="bottom:20px; " href="https://vu.edu.bd/"><img style=" padding: 0 0 5px 0px; border-bottom: 2px solid #c44d2d;" src="https://vu.edu.bd/img/whitelogo.png" class="l-footer__body-logo" alt="Varendra University"></a>
+				<a style="bottom:20px; " href="https://vu.edu.bd/"><img style=" padding: 0 0 5px 0px; border-bottom: 2px solid #c44d2d; display:unset;" src="https://vu.edu.bd/img/whitelogo.png" class="l-footer__body-logo" alt="Varendra University"></a>
 
 				<address class="l-footer-copyright" style="bottom:20px; ">Developed and Maintained by IT Office, VU<br> © 2012-2022 Varendra University</address>
 

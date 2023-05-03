@@ -66,7 +66,6 @@
                         class="block text-xs md:text-lg w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         <option class="text-xs md:text-lg" {{(isset($member->gender) && $member->gender=='Male')?'selected':''}} value="Male">Male</option>
                         <option class="text-xs md:text-lg" {{(isset($member->gender) && $member->gender=='Female')?'selected':''}} value="Female">Female</option>
-                        <option class="text-xs md:text-lg" {{(isset($member->gender) && $member->gender=='Others')?'selected':''}} value="Others">Others</option>
                     </select>
 
                 </div>
@@ -74,7 +73,7 @@
                     <label
                         class="block uppercase tracking-wide text-gray-700 text-xs md:text-lg font-bold mb-2"
                         for="maritial_status">
-                        Civil Status <span class="text-red-500 font-bold">*</span>
+                        Marital Status <span class="text-red-500 font-bold">*</span>
                     </label>
                     <select name="maritial_status" id="maritial_status"
                         onchange="displayMarried('#ifMarried');"
@@ -223,6 +222,6 @@
         </div>
 
     </div>
-    <a uk-switcher-item="previous" class="btn btn-success pull-left" id="personalinfobtn-pre" href="javascript:void(0)">Membership Type</a>
-                    <input type="submit" id="personalInfoSubmit" class="btn btn-success pull-right" id="educationbtn-next" value="Education Information">
+    <a uk-switcher-item="previous" class="btn btn-success pull-left" id="personalinfobtn-pre" href="javascript:void(0)">Back</a>
+                    <input type="submit" id="personalInfoSubmit" class="btn btn-success pull-right" id="educationbtn-next" value="Save & Continue">
 </form>

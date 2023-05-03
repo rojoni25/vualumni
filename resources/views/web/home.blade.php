@@ -10,20 +10,37 @@
         background-color: #0f0f0f;
         border: none;
     }
+
+    .slider-container{
+    background-color: #FFFBFA;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.75);
+    height: 56.25vw;
+    max-height: 78vh;
+    margin-bottom: unset !important;
+    }
+    .slider{
+        height: 100%;
+    }
+    .slick-slider{
+        height: 100%;
+    }
 </style>
 @endpush
 @section('main')
-    <!-- Top Row -->
-<div class="row" style="margin:15px 0px 0px;">
-	<div class="col-md-9 col-sm-12 col-xs-12" style="margin-bottom: 10px;">
-		{{--@include('web.gadgets.main_slider')
-		@include('web.gadgets.marquee')--}}
+<div class="row">
+	<div style="margin-bottom: 10px;">
+		@include('web.gadgets.main_slider')
+		@include('web.gadgets.marquee')
 	</div>
-
-	<div class="col-md-3 col-sm-12 col-xs-12">
-		{{-- @include('web.gadgets.hot_links') --}}
-
-	</div>
-	<!-- /Top Row-->
+</div>
+<div class="container mx-auto" style="max-width: 1280px;">
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="w-full" style="margin-bottom: 10px;">
+            @include('web.gadgets.notice_list')
+        </div>
+        <div class="w-full" style="margin-bottom: 10px;">
+            @include('web.gadgets.event_list')
+        </div>
+    </div>
 </div>
 @endsection

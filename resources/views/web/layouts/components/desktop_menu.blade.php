@@ -34,12 +34,13 @@
                                 <div class="l-col-xs-6 l-col-sm-4">
 
                                     <ul class="p-sub-menu__list">
+                                        <li><a href="{{route('web.post.show-post',['aims-and-objectives'])}}"><i class="fa fa-caret-right"></i> Aims & Objectives</a></li>
 
-                                        <li><a href="https://vu.edu.bd/the-university/at-a-glance"><i class="fa fa-caret-right"></i> At a Glance</a></li>
+                                        {{-- <li><a href="https://vu.edu.bd/the-university/at-a-glance"><i class="fa fa-caret-right"></i> At a Glance</a></li>
 
                                         <li><a href="https://vu.edu.bd/the-university/history-of-vu"><i class="fa fa-caret-right"></i> History of VU</a></li>
 
-                                        <li><a href="https://vu.edu.bd/the-university/why-vu"><i class="fa fa-caret-right"></i> Why VU?</a></li>
+                                        <li><a href="https://vu.edu.bd/the-university/why-vu"><i class="fa fa-caret-right"></i> Why VU?</a></li> --}}
 
                                     </ul>
 
@@ -47,7 +48,7 @@
 
                                 <div class="l-col-xs-6 l-col-sm-4">
 
-                                    <ul class="p-sub-menu__list">
+                                    {{-- <ul class="p-sub-menu__list">
 
                                         <li><a href="https://vu.edu.bd/the-university/mission-vission"><i class="fa fa-caret-right"></i> Mission and Vision</a></li>
 
@@ -57,7 +58,7 @@
 
                                         <li><a href="https://vu.edu.bd/the-university/interpretation-of-vu-logo"><i class="fa fa-caret-right"></i> Interpretation of VU Logo</a></li>
 
-                                    </ul>
+                                    </ul> --}}
 
                                 </div>
 
@@ -65,7 +66,7 @@
 
                                     <figure class="p-sub-menu_img">
 
-                                        <img src="https://vu.edu.bd/uploads/media/images/vu_campus.jpg" alt="">
+                                        {{-- <img src="https://vu.edu.bd/uploads/media/images/vu_campus.jpg" alt=""> --}}
 
                                     </figure>
 
@@ -229,11 +230,11 @@
 
                                 <div class="l-col-xs-6 l-col-sm-4">
 
-                                    <figure class="p-sub-menu_img">
+                                    {{-- <figure class="p-sub-menu_img">
 
                                         <img src="https://vu.edu.bd/uploads/slider/images/FB--WEBSITE-14-JULY-2022.jpg" alt="">
 
-                                    </figure>
+                                    </figure> --}}
 
                                 </div>
 
@@ -248,12 +249,7 @@
                 <li class="l-gnav__item l-gnav__item-05">
                     <a href="https://convocation.vu.edu.bd">Convocation</a>
                 </li>
-
-
             </ul>
-
         </div>
-
     </nav>
-
 </div>

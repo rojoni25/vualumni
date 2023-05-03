@@ -1,11 +1,12 @@
-<div style="border-bottom: 2px solid #777;">
+<div style="border-bottom: 2px solid #777; background-color: wheat; padding-bottom:10px;">
     <marquee onMouseOver="this.setAttribute('scrollamount', 0, 0);" OnMouseOut="this.setAttribute('scrollamount', 6, 0);">
         <ul style="margin-top: 10px;" class="vu-marquee">
-            @foreach ($marquees as $marquee)
+            @forelse ($marquees as $marquee)
                 <li style="display:inline-block; padding-right:20px;">
                     <a href="{{$marquee->content_url}}">{{$marquee->title}}</a>
-                </li>';
-            @endforeach
+                </li>
+            @empty
+            @endforelse
         </ul>
     </marquee>
 

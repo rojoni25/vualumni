@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssociationMemberController;
 
@@ -17,9 +19,11 @@ use App\Http\Controllers\AssociationMemberController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('web.home');
-});
+// Route::get('/', function () {
+//     return view('web.home');
+// });
+Route::get('/', [WebController::class,'index']);
+
 
 Route::resource('association-members',AssociationMemberController::class);
 
@@ -30,13 +34,16 @@ Route::get('alumni-association/register',[AssociationMemberController::class,'re
 Route::post('alumni-association/rpi',[AssociationMemberController::class,'savePersonalInfo'])->name('register.personal.save');
 Route::post('alumni-association/rei',[AssociationMemberController::class,'saveEducationInfo'])->name('register.education.save');
 Route::post('alumni-association/roi',[AssociationMemberController::class,'saveOcupationInfo'])->name('register.ocupation.save');
+Route::post('alumni-association/ruf',[AssociationMemberController::class,'saveUploads'])->name('register.uploads.save');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+    ])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+    });
+
+    Route::get('/{slug}',[PostController::class,'showPost'])->name('web.post.show-post');

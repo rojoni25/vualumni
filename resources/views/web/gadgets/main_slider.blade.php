@@ -1,25 +1,15 @@
 <div class="slider-container" style="background-color: #FFFBFA; box-shadow : 0px 2px 5px rgba(0, 0, 0, 0.75);">
-    <div class="slider">
+    <div class="slider" style="height:100%;">
         @foreach ($sliders as $slider)
-            <div>
-                <div class="slider-image-container">
-                    <img class="slider-image" style="object-fit:cover;" src="{{ $slider->image_url }}">
-                </div>
-                <div class="slider-caption">
-                    <span>
-                        <a href="{{ $slider->content_url }}">{{ $slider->title }}</a>
-                    </span>
-                </div>
-                <a style="color: white; font-size:18px;" href="https://vu.edu.bd/admission/online-application">
-                    <div class="slider-caption apply_btn">
-                        <span>Apply Now</span>
-                    </div>
-                </a>
+        <div style="height: 56.25vw; max-height: 78vh;">
+            <div class="slider-image-container" style="height: 56.25vw; max-height: 78vh;">
+                <img class="slider-image" style="height:100%; object-fit:cover;"
+                    src="{{$slider->photo}}">
             </div>
+            <div class="slider-caption">
+                <span><a href="{{$slider->url}}">{{$slider->title}}</a></span>
+            </div>
+        </div>
         @endforeach
-
-        ?>
     </div>
-
-
 </div>

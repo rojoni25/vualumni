@@ -97,8 +97,8 @@
 
         </div>
     </div>
-    <a uk-switcher-item="previous" class="btn btn-success pull-left" href="javascript:void(0)">Education Information</a>
-    <input type="submit" class="btn btn-success pull-right" value="Uploads">
+    <a uk-switcher-item="previous" class="btn btn-success pull-left" href="javascript:void(0)">Back</a>
+    <input type="submit" class="btn btn-success pull-right" value="Save & Continue">
 
 </form>
 @endif
