@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('google_map')->nullable();
             $table->string('group')->default('web');
             $table->string('category')->default('general');
-            $table->string('added_by')->default('system');
+            $table->foreignId('added_by')->constrained('users')->nullable();
             $table->integer('pinned')->default(0);
             $table->integer('status')->default(1);
             $table->timestamp('registration_start')->nullable();

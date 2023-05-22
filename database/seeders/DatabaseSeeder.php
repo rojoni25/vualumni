@@ -21,6 +21,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DistrictSeeder::class,
             ThanaSeeder::class,
+            UserSeeder::class,
+            ModuleSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            RolePermissionSeeder::class,
+            UserRoleSeeder::class,
+            MembershipTypesSeeder::class,
         ]);
 
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('association_member_ocupations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('membership_id');
+            $table->foreignId('membership_id')->constrained('association_members');
             $table->string('organization');
             $table->string('position');
             $table->date('from_date');

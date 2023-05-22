@@ -146,6 +146,9 @@
                     <input
                         class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="email" name="email" type="email" value="{{$member->email??''}}" placeholder="user@email.com" required>
+                        @if (session('email_error'))
+                        <label class="block tracking-wide text-red-500 text-xs md:text-lg font-bold mb-2" for="email">{{session('email_error')}}</label>
+                        @endif
                 </div>
                 <div class="w-full md:w-1/5 px-3">
                     <label

@@ -9,4 +9,8 @@ class AssociationMemberOcupation extends Model
 {
     use HasFactory;
     protected $guarded =['_token'];
+    protected $casts = [
+        'from_date'=>'immutable_datetime',
+        'to_date'=>'immutable_datetime',
+    ];
 }

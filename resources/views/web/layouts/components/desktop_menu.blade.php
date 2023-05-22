@@ -97,7 +97,7 @@
                                         <li><a href="{{route('association-members.index')}}"><i class="fa fa-caret-right"></i> Members</a></li>
                                         <li><a href="{{route('membership-information')}}"><i class="fa fa-caret-right"></i> Membership Information</a></li>
 
-                                        <li><a href="{{route('register')}}"><i class="fa fa-caret-right"></i> Sign up</a></li>
+                                        <li><a href="{{route('aavu.register')}}"><i class="fa fa-caret-right"></i> Sign up</a></li>
 
 
                                     </ul>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('group')->default('web');
             $table->string('category')->default('general');
-            $table->string('added_by')->default('system');
+            $table->foreignId('added_by')->constrained('users')->nullable();
             $table->integer('pinned')->default(0);
             $table->integer('status')->default(1);
             $table->timestamp('expiration')->nullable();

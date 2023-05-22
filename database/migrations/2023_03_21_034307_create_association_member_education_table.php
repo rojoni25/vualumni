@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('association_member_education', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('membership_id');
+            $table->foreignId('membership_id')->constrained('association_members');
             $table->string('degree')->nullable();
             $table->string('year')->nullable();
             $table->string('department')->nullable();

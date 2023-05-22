@@ -43,4 +43,11 @@
         </div>
     </div>
 </div>
+<div class="container mx-auto" style="max-width: 1280px;">
+    <div class="w-full">
+        <div class="w-full" style="margin-bottom: 10px;">
+            @include('web.gadgets.testimonial_list')
+        </div>
+    </div>
+</div>
 @endsection

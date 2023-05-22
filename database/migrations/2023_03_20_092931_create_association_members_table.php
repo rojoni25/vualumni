@@ -36,6 +36,10 @@ return new class extends Migration
             $table->string('certificate')->nullable();
             $table->string('status')->default('pending');
             $table->string('completed_steps')->default('0');
+            $table->string('nid_approval')->default('pending');
+            $table->string('certificate_approval')->default('pending');
+            $table->bigInteger('approved_by')->nullable();
+            $table->json('remarks')->nullable();
             $table->timestamps();
         });
     }

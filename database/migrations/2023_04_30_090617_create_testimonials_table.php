@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained('users')->nullable();
             $table->string('user_name');
+            $table->text('designation');
             $table->string('tagline');
             $table->string('user_avatar');
             $table->text('content');

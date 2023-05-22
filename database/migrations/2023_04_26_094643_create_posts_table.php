@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->text('content')->nullable();
             $table->text('thumbnail')->nullable();
-            $table->string('added_by')->nullable();
+            $table->foreignId('added_by')->constrained('users')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

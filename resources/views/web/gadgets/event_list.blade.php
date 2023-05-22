@@ -10,29 +10,32 @@
 	<div style="background-color: #FFFBFA; box-shadow : 0px 0px 1px rgba(0, 0, 0, 0.75);">
 		<div id="nt-cr-container" style="margin-top: 15px; margin-bottom: 10px; height: 315px;">
 			<ul class="notice-slider" id="nt-cr">
+                @forelse ($events as $event)
 				<li>
 					<div class="ticker-body">
                         <div class="flex">
                             <div class="event-image">
-                                <img src="{{asset('aavu_logo_02.png')}}" alt="" style="aspect-ratio:16/10; width:100px; object-fit:contain;">
+                                <img src="{{asset('upload/events/thumbs/01.jpg')}}" alt="" style="aspect-ratio:16/10; width:100px; object-fit:contain;">
                             </div>
                             <div class="event-content">
                                 <div class="event-title">
-                                    <span>Event Title</span>
+                                    <span>{{$event->title}}</span>
                                 </div>
                                 <div class="event-date">
                                     <span>
                                         <i class="fa fa-clock"></i>
-                                        <span>05-07 October 2023</span>
+                                        <span>{{dateRangeGenerator($event->event_start,$event->event_end)}}</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
 					</div>
 				</li>
+                @empty
+                @endforelse
 
 			</ul>
 		</div>
-		<div class="btn btn-success" style="width: 100%; "> <a style="color: white;" href="#notice"><i class='fas fa-file-alt' style='font-size:14px;color:white'></i> More notices..</a> </div>
+		<div class="btn btn-success" style="width: 100%; "> <a style="color: white;" href="#notice"><i class='fas fa-file-alt' style='font-size:14px;color:white'></i> More Events..</a> </div>
 	</div>
 </div>

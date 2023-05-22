@@ -17,7 +17,7 @@
 <link href="{{ asset('assets\dropify\dist\css\dropify.min.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 @section('main')
-        <div class="mt-10">
+        <div class="mx-auto mt-10" style="max-width:1280px;">
 
             <ul style="font-size: 18px;" class="uk-subnav uk-subnav-pill justify-center"
                 uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; connect: #form-body; active:{{session('active_form')??0}};">

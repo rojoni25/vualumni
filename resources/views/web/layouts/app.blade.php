@@ -215,16 +215,19 @@
 
         {{-- /GNAV --}}
 
+        @if (Agent::isMobile())
+
         @include('web.layouts.components.mobile_menu')
+        @endif
 
         {{-- MAIN --}}
 
         <div class="page-body">
             @yield('main')
         </div>
-        @include('web.layouts.components.footer')
 
     </div>
+    @include('web.layouts.components.footer')
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{asset('assets/uikit/js/uikit.min.js')}}"></script>

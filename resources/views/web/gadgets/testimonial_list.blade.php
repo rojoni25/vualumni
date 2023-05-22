@@ -1,39 +1,36 @@
-<div class="vu-gradient">
-	<a href="#notice">
-		<div class="show-all-btn">
-			<h4 style="color: white; font-weight: 700; text-align: left; "> <i class="fas fa-exclamation-circle"></i>UPCOMING EVENTS</h4>
-		</div>
-	</a>
-</div>
-
 <div>
-	<div style="background-color: #FFFBFA; box-shadow : 0px 0px 1px rgba(0, 0, 0, 0.75);">
-		<div id="nt-cr-container" style="margin-top: 15px; margin-bottom: 10px; height: 315px;">
-			<ul class="notice-slider" id="nt-cr">
-				<li>
-					<div class="ticker-body">
-                        <div class="flex">
-
-                            <div class="avatar rounded-avatar">
-                                <img src="{{asset('aavu_logo_02.png')}}" alt="" style="aspect-ratio:1/1; width:100px; object-fit:contain;">
-                            </div>
-                            <div class="testimonial-content">
-                                <div class="testimonial-title">
-                                    <span>User Name</span>
+	<div>
+		<div style="margin-top: 15px; margin-bottom: 10px;">
+            <div class="text-center" style="6px double #c44d2d;">
+                <span class="font-bold text-4xl">Testimonials</span>
+            </div>
+            <div uk-slideshow="autoplay: true; min-height:300; max-height:350;">
+                <ul class="uk-slideshow-items">
+                    @forelse ($testimonials as $testimonial)
+                    <li class="my-3">
+                        <div class="card border rounded-md p-3 h-full">
+                            <div class="flex flex-col items-center">
+                                <div class="border rounded-full p-3 m-3">
+                                    <img src="{{asset($testimonial->user_avatar)}}" alt="" style="aspect-ratio:1/1; width:100px; object-fit:contain;">
                                 </div>
-                                <div class="event-date">
-                                    <span>
-                                        <i class="fa fa-clock"></i>
-                                        <span>05-07 October 2023</span>
-                                    </span>
+                                <div class="testimonial-content">
+                                    <div class="testimonial-title text-center">
+                                        <span class="text-2xl md:text-3xl"><b>{{$testimonial->user_name}}</b></span>, <span id="designation" class="text-xl md:text-2xl">{{$testimonial->designation}}</span>
+                                    </div>
+                                    {{-- <div class="testimonial-tagline">
+                                        <span><blockquote>{{$testimonial->tagline??''}}</blockquote></span>
+                                    </div> --}}
+                                    <div class="testimonial-texts">
+                                        {{$testimonial->content}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-					</div>
-				</li>
-
-			</ul>
+                    </li>
+                    @empty
+                    @endforelse
+                </ul>
+            </div>
 		</div>
-		<div class="btn btn-success" style="width: 100%; "> <a style="color: white;" href="#notice"><i class='fas fa-file-alt' style='font-size:14px;color:white'></i> More notices..</a> </div>
 	</div>
 </div>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Slider;
+use App\Models\Web\Event;
 use App\Models\Web\Marquee;
 use App\Models\Web\Notice;
+use App\Models\Web\Testimonial;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -18,7 +20,9 @@ class WebController extends Controller
         $sliders = Slider::where(['group'=>'web','status'=>1,'pinned'=>0])->orderBy('order','asc')->take(8)->get();
         $marquees = Marquee::where(['group'=>'web','status'=>1,'pinned'=>0])->get();
         $notices = Notice::where(['group'=>'web','status'=>1])->take(10)->get();
-        return view('web.home',compact('sliders','marquees','notices'));
+        $events = Event::where(['group'=>'web','status'=>1])->take(10)->get();
+        $testimonials = Testimonial::where(['video'=>null,'status'=>1])->take(10)->get();
+        return view('web.home',compact('sliders','marquees','notices','testimonials','events'));
     }
 
     /**
