@@ -14,14 +14,17 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->nullable();
-            $table->string('user_name');
-            $table->text('designation');
-            $table->string('tagline');
-            $table->string('user_avatar');
+            $table->string('user_name')->nullable();
+            $table->text('designation')->nullable();
+            $table->string('tagline')->nullable();
+            $table->string('user_avatar')->nullable();
             $table->text('content');
-            $table->text('video');
-            $table->integer('status');
+            $table->text('video')->nullable();
+            $table->foreignId('added_by')->constrained('users')->nullable();
+            $table->integer('order')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

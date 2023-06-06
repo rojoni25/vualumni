@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('member_id')->constrained('association_members');
-            $table->bigInteger('membership_id');
-            $table->string('method');
+            $table->bigInteger('membership_id')->nullable();
+            $table->string('method')->nullable();
+            $table->string('payment_for')->nullable();
             $table->double('amount');
             $table->json('statement');
-            $table->timestamp('payment_date');
-            $table->foreignId('approved_by')->constrained('users');
+            $table->timestamp('payment_date')->nullable();
+            $table->timestamp('confirmation_date')->nullable();
+            $table->foreignId('confirmed_by')->constrained('users');
             $table->string('status')->default('Pending');
             $table->timestamps();
         });

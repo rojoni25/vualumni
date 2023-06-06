@@ -15,8 +15,10 @@ class ModuleSeeder extends Seeder
     public function run()
     {
         //
-        Module::insert(['name'=>'User Management','slug'=>'user_management']);
-        Module::insert(['name'=>'Role Management','slug'=>'role_management']);
-        Module::insert(['name'=>'Registration Management','slug'=>'registration_management']);
+        Module::insert(['id'=>1,'name'=>'Dashboard','slug'=>'dashboard']);
+        Module::insert(['id'=>2,'name'=>'User Management','slug'=>'user_management']);
+        Module::insert(['id'=>3,'name'=>'Role Management','slug'=>'role_management']);
+        Module::insert(['id'=>4,'name'=>'Registration Management','slug'=>'registration_management']);
+        Module::insert(['id'=>5,'name'=>'Content Management','slug'=>'content_management']);
     }
 }

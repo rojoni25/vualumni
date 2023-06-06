@@ -34,10 +34,11 @@ return new class extends Migration
             $table->string('nid')->nullable();
             $table->string('nid_photo')->nullable();
             $table->string('certificate')->nullable();
-            $table->string('status')->default('pending');
+            $table->string('status')->default('Pending');
             $table->string('completed_steps')->default('0');
-            $table->string('nid_approval')->default('pending');
-            $table->string('certificate_approval')->default('pending');
+            $table->string('nid_approval')->default('Pending');
+            $table->string('certificate_approval')->default('Pending');
+            $table->string('payment_approval')->default('Pending');
             $table->bigInteger('approved_by')->nullable();
             $table->json('remarks')->nullable();
             $table->timestamps();

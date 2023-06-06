@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociationMember;
+use App\Models\Payments;
+use App\Notifications\PaymentApproved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Mpdf\Mpdf;
 use Storage;
 
@@ -234,37 +237,136 @@ class AssociationMemberController extends Controller
         return Storage::disk('public')->download($documentFileName, 'Request', $header); //
     }
 
-    public function attachmentApproval(Request $request){
-        $member = AssociationMember::find($request->member_id);
-        if($request->attachment =='nid' && $request->action =='Approved'){
-            if($member->nid_approval == 'Approved'){
-                return back()->with('error', 'NID already approved');
-            }else{
-                $member->nid_approval = 'Approved';
-                $member->remarks = [
-                    'nid_approval'=> [
-                        'action' =>'Approved',
-                        'action_by' => Auth::id(),
-                        'message' => $request->message
-                    ]
-                    ];
-                $member->save();
-            }
+    public function nidApproval($member_id, Request $request){
+        $member = AssociationMember::find($member_id);
+        if($member->nid_approval == 'Approved'){
+            return back()->with('error', 'NID already approved');
+        }else{
+            $remarks = $member->remarks;
+            $member->nid_approval = 'Approved';
+            $remarks['nid_approval']= [
+                    'action' =>'Approved',
+                    'action_by' => Auth::id(),
+                    'message' => $request->message
+                ];
+            $member->remarks = $remarks;
+            $member->save();
         }
-        if($request->attachment =='certificate' && $request->action =='Approved'){
-            if($member->certificate_approval == 'Approved'){
-                return back()->with('error', 'NID already approved');
-            }else{
-                $member->nid_approval = 'Approved';
-                $member->remarks = [
-                    'certificate_approval'=> [
-                        'action' =>'Approved',
-                        'action_by' => Auth::id(),
-                        'message' => $request->message
-                    ]
-                    ];
-                $member->save();
-            }
-        }
+        return back()->with('success','NID has been approved successfully');
     }
+    public function nidDecline($member_id, Request $request){
+        $member = AssociationMember::find($member_id);
+        if($member->nid_approval == 'Rejected'){
+            return back()->with('error', 'NID already Declined');
+        }else{
+            $remarks = $member->remarks;
+            $member->nid_approval = 'Rejected';
+            $remarks['nid_approval']= [
+                    'action' =>'Rejected',
+                    'action_by' => Auth::id(),
+                    'message' => $request->message
+                ];
+            $member->remarks = $remarks;
+            $member->save();
+        }
+        return back()->with('success','NID has been declined successfully');
+    }
+    public function certificateApproval($member_id, Request $request){
+        $member = AssociationMember::find($member_id);
+        if($member->certificate_approval == 'Approved'){
+            return back()->with('error', 'Certificate already approved');
+        }else{
+            $remarks = $member->remarks;
+            $member->certificate_approval = 'Approved';
+            $remarks['certificate_approval']= [
+                    'action' =>'Approved',
+                    'action_by' => Auth::id(),
+                    'message' => $request->message
+                ];
+            $member->remarks = $remarks;
+            $member->save();
+        }
+        return back()->with('success','Certificate has been approved successfully');
+    }
+    public function certificateDecline($member_id, Request $request){
+        $member = AssociationMember::find($member_id);
+        if($member->certificate_approval == 'Rejected'){
+            return back()->with('error', 'Certificate already Declined');
+        }else{
+            $remarks = $member->remarks;
+            $member->certificate_approval = 'Rejected';
+            $remarks['certificate_approval']= [
+                    'action' =>'Rejected',
+                    'action_by' => Auth::id(),
+                    'message' => $request->message
+                ];
+            $member->remarks = $remarks;
+            $member->save();
+        }
+        return back()->with('success','Certificate has been declined successfully');
+    }
+
+    public function paymentApproval($member_id, Request $request){
+        $member = AssociationMember::find($member_id);
+        if($member->payment_approval == 'Approved'){
+            return back()->with('error', 'Payment already Approved');
+        }else{
+            $remarks = $member->remarks;
+            $member->payment_approval = 'Approved';
+            $remarks['payment_approval']= [
+                    'action' =>'Approved',
+                    'action_by' => Auth::id(),
+                    'message' => "Payment for the registration"
+                ];
+            $member->remarks = $remarks;
+            $member->save();
+            $payment = Payments::where(['member_id'=>$member->id,'payment_for'=>'Registration'])->firstOrNew();
+
+            $payment->member_id = $member_id;
+            $payment->method = $request->method;
+            $payment->payment_for = "Registration";
+            $payment->amount = $request->amount;
+            $payment->statement = $request->statement;
+            $payment->payment_date = $request->payment_date;
+            $payment->confirmation_date = date('Y-m-d H:i:s');
+            $payment->confirmed_by = Auth::id();
+            $payment->status = "Approved";
+            $payment->save();
+        }
+        return back()->with('success','Payment has been approved successfully');
+    }
+
+    public function membershipApproval($member_id, Request $request){
+        $lastMembership = AssociationMember::where('membership_id','!=','')->latest()->first();
+        if($lastMembership){
+            $newMembershipId = $lastMembership->membership_id+1;
+        }else{
+            $newMembershipId = '140312001';
+        }
+        $member = AssociationMember::find($member_id);
+        if($member->nid_approval !='Approved'){
+            return back()->with('error', 'NID Card is not approoved');
+        }
+        if($member->certificate_approval !='Approved'){
+            return back()->with('error', 'Certificate is not approoved');
+        }
+        if($member->payment_approval !='Approved'){
+            return back()->with('error', 'Payment is not approoved');
+        }
+        if($member->status == 'Approved'){
+            return back()->with('error', 'Membership already Approved');
+        }else{
+            $remarks = $member->remarks;
+            $member->status = 'Approved';
+            $member->membership_id = $newMembershipId;
+            $remarks['membership_approval']= [
+                    'action' =>'Approved',
+                    'action_by' => Auth::id(),
+                    'message' => "Membership Accepted"
+                ];
+            $member->remarks = $remarks;
+            $member->save();
+    }
+    return back()->with('success','Membership accepted successfully');
+}
 }

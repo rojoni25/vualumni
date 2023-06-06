@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('pinned')->default(0);
             $table->timestamp('expiration')->nullable();
             $table->integer('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

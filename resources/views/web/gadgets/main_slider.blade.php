@@ -4,7 +4,7 @@
         <div style="height: 56.25vw; max-height: 78vh;">
             <div class="slider-image-container" style="height: 56.25vw; max-height: 78vh;">
                 <img class="slider-image" style="height:100%; object-fit:cover;"
-                    src="{{$slider->photo}}">
+                    src="{{asset('storage/images/slider/large/'.$slider->photo)}}">
             </div>
             <div class="slider-caption">
                 <span><a href="{{$slider->url}}">{{$slider->title}}</a></span>

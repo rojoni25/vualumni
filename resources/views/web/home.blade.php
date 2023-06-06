@@ -24,6 +24,10 @@
     .slick-slider{
         height: 100%;
     }
+
+    .slider-caption{
+        z-index: 444;
+    }
 </style>
 @endpush
 @section('main')

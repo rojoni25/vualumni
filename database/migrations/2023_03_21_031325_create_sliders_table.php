@@ -23,8 +23,11 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->integer('pinned')->default(0);
             $table->integer('order')->default(0);
+            $table->foreignId('added_by')->constrained('users')->nullable();
             $table->integer('status')->default(1);
+            $table->timestamp('expiration')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

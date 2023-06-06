@@ -33,4 +33,7 @@ class AssociationMember extends Model
     public function membership_info(){
         return $this->hasOne(MembershipType::class,'title','membership_type');
     }
+    public function registrationPayment(){
+        return $this->hasOne(Payments::class,'member_id','id')->where('payment_for','Registration');
+    }
 }

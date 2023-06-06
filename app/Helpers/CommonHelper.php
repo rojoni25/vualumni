@@ -15,3 +15,14 @@ if(($date1->format('Y') == $date2->format('Y')) && ($date1->format('mdhisa') != 
 }
 return $date1->format('d M Y h:i a - ').$date1->format('d M Y h:i a');
 }
+
+function urlSanitizer($url){
+    if($url==''){
+        return '';
+    }
+    $newUrl = str_replace(['http://','https://'],'',$url);
+    return 'https://'.$newUrl;
+}
+function fileNameSanitizer($extension,$filename){
+    return Str::slug(str_replace($extension,'',$filename)).'.'.$extension;
+}

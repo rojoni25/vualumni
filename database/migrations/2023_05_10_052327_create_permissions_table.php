@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->integer('module_id');
+            $table->foreignId('module_id')->constrained('modules');
             $table->string('name');
             $table->string('slug');
             $table->integer('status');

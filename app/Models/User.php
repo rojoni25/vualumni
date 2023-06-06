@@ -63,4 +63,7 @@ class User extends Authenticatable
     public function userRole(){
         return $this->hasOne(UserRole::class);
     }
+    public function membershipInfo(){
+        return $this->hasOne(AssociationMember::class,'email','email');
+    }
 }

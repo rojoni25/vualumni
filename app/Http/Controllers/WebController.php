@@ -17,7 +17,7 @@ class WebController extends Controller
     public function index()
     {
         $pinnedSliders = Slider::where(['group'=>'web','status'=>1,'pinned'=>1])->orderBy('order','asc')->take(8)->get();
-        $sliders = Slider::where(['group'=>'web','status'=>1,'pinned'=>0])->orderBy('order','asc')->take(8)->get();
+        $sliders = Slider::where(['group'=>'web','status'=>1,'pinned'=>0])->orderBy('id','desc')->take(8)->get();
         $marquees = Marquee::where(['group'=>'web','status'=>1,'pinned'=>0])->get();
         $notices = Notice::where(['group'=>'web','status'=>1])->take(10)->get();
         $events = Event::where(['group'=>'web','status'=>1])->take(10)->get();

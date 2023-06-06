@@ -281,14 +281,40 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled {{ ($category_name === 'applicants') ? 'show' : '' }}" id="applicants" data-parent="#accordionExample">
-                            <li class="{{ ($page_name === 'All Applications') ? 'active' : '' }}">
+                            <li class="{{ ($page_name === 'All Applicants') ? 'active' : '' }}">
                                 <a href="{{route('admin.association-members.index')}}"> All Applicants </a>
                             </li>
-
                         </ul>
                     </li>
                     @endcan
 
+                    @can('admin.cms.dashboard')
+                    <li class="menu {{ ($category_name === 'cms') ? 'active' : '' }}">
+                        <a href="#cms" data-active="{{ ($category_name === 'cms') ? 'true' : 'false' }}" data-toggle="collapse" aria-expanded="{{ ($category_name === 'cms') ? 'true' : 'false' }}" class="dropdown-toggle">
+                            <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>CMS</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ ($category_name === 'cms') ? 'show' : '' }}" id="cms" data-parent="#accordionExample">
+                            <li class="{{ ($page_name === 'Dashboard') ? 'active' : '' }}">
+                                <a href="/users/profile"> Dashboard </a>
+                            </li>
+                            <li class="{{ ($page_name === 'All Sliders') ? 'active' : '' }}">
+                                <a href="{{route('admin.cms.slider.index')}}"> Slider </a>
+                            </li>
+                            <li class="{{ ($page_name === 'All Testimonials') ? 'active' : '' }}">
+                                <a href="{{route('admin.cms.testimonial.index')}}"> Testimonials </a>
+                            </li>
+                            <li class="{{ ($page_name === 'All News') ? 'active' : '' }}">
+                                <a href="{{route('admin.cms.news.index')}}"> News </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcan
                     <li class="menu {{ ($category_name === 'users') ? 'active' : '' }}">
                         <a href="#users" data-active="{{ ($category_name === 'users') ? 'true' : 'false' }}" data-toggle="collapse" aria-expanded="{{ ($category_name === 'users') ? 'true' : 'false' }}" class="dropdown-toggle">
                             <div class="">

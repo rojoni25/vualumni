@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,9 @@ Route::post('alumni-association/rei',[AssociationMemberController::class,'saveEd
 Route::post('alumni-association/roi',[AssociationMemberController::class,'saveOcupationInfo'])->name('register.ocupation.save');
 Route::post('alumni-association/ruf',[AssociationMemberController::class,'saveUploads'])->name('register.uploads.save');
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -57,4 +61,7 @@ Route::middleware([
         })->name('dashboard');
     });
 
+    Route::get('/news',[NewsController::class,'index']);
     Route::get('/{slug}',[PostController::class,'showPost'])->name('web.post.show-post');
+
+    Route::post('/upload-image', 'ImageController@upload')->name('upload.image');
