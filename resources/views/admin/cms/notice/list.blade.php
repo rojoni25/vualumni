@@ -8,6 +8,13 @@
     <link href="{{ asset('admin/plugins/animate/animate.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
 
+
+    <style>
+        .notice-img{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 @endpush
 @section('content')
     <div class="layout-px-spacing">
@@ -15,7 +22,7 @@
 
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="buttons text-right mb-3">
-                <a href="{{route('admin.cms.marquee.create')}}" class="btn btn-success">Add New</a>
+                <a href="{{route('admin.cms.notice.create')}}" class="btn btn-success">Add New</a>
             </div>
                 <div class="widget-content widget-content-area br-6">
                     <div class="table-responsive mb-4 mt-4">
@@ -24,8 +31,7 @@
                                 <tr>
                                     <th class="checkbox-column">SL.</th>
                                     <th>Title</th>
-                                    <th>URL</th>
-                                    <th>Expiration</th>
+                                    <th>Attachment</th>
                                     {{-- <th>Category</th>
                                     <th>Group</th>
                                     <th>Order</th>
@@ -35,26 +41,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($marquees as $marquee)
+                                @forelse ($notices as $notice)
                                     <tr>
                                         <td class="checkbox-column">{{ $loop->iteration }}</td>
-                                        <td>{{ $marquee->title }}</td>
-                                        <td>{{ $marquee->content_url }}</td>
-
-                                        {{-- <td>{{ $marquee->category }}</td>
-                                        <td>{{ $marquee->group }}</td>
-                                        <td>{{ $marquee->order }}</td>
-                                        <td>{{ $marquee->pinned }}</td> --}}
-                                        <td>{{ ($marquee->expiration)?$marquee->expiration->format('d M Y'): 'No Expiration' }}</td>
-                                        <td>{{ $marquee->created_at->format('d M Y') }}</td>
+                                        <td>{{ $notice->title }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="notice-attachment">
+                                                    <a href="{{asset($notice->file)}}">Attachment</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        {{-- <td>{{ $notice->category }}</td>
+                                        <td>{{ $notice->group }}</td>
+                                        <td>{{ $notice->order }}</td>
+                                        <td>{{ $notice->pinned }}</td> --}}
+                                        <td>{{ $notice->created_at->format('d M Y') }}</td>
                                         <td class="style-3">
-                                            <form action="{{route('admin.cms.marquee.destroy',$marquee->id)}}" method="post" id="delete_{{$marquee->id}}">
+                                            <form action="{{route('admin.cms.notice.destroy',$notice->id)}}" method="post" id="delete_{{$notice->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
                                             <ul class="table-controls">
-                                                <li><a href="{{route('admin.cms.marquee.edit',$marquee->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
-                                                <li><a href="javascript:setModal('#delete_{{$marquee->id}}');"  class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
+                                                <li><a href="{{route('admin.cms.notice.edit',$notice->id)}}" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                <li><a href="javascript:setModal('#delete_{{$notice->id}}');"  class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -69,12 +79,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteMarquee" tabindex="-1" role="dialog" aria-labelledby="deleteMarqueeLabel"
+    <div class="modal fade" id="deleteNotice" tabindex="-1" role="dialog" aria-labelledby="deleteNoticeLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteMarqueeLabel">Are You Sure?</h5>
+                        <h5 class="modal-title" id="deleteNoticeLabel">Are You Sure?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <div class="icon-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -88,7 +98,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="text-center">
-                            <span>Do you really want to delete this marquee?</span>
+                            <span>Do you really want to delete this notice?</span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -107,7 +117,7 @@
         c2 = $('#style-2').DataTable({
             headerCallback: function(e, a, t, n, s) {
                 e.getElementsByTagName("th")[0].innerHTML =
-                    '<label class="new-control new-checkbox checkbox-outline-info m-auto">\n<input type="checkbox" class="new-control-input chk-parent select-customers-info" id="marquee-all">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
+                    '<label class="new-control new-checkbox checkbox-outline-info m-auto">\n<input type="checkbox" class="new-control-input chk-parent select-customers-info" id="notice-all">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
             },
             columnDefs: [{
                 targets: 0,
@@ -115,7 +125,7 @@
                 className: "",
                 orderable: !1,
                 render: function(e, a, t, n) {
-                    return '<label class="new-control new-checkbox checkbox-outline-info  m-auto">\n<input type="checkbox" class="new-control-input child-chk select-customers-info" id="marquee-all">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
+                    return '<label class="new-control new-checkbox checkbox-outline-info  m-auto">\n<input type="checkbox" class="new-control-input child-chk select-customers-info" id="notice-all">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
                 }
             }],
             "oLanguage": {
@@ -136,7 +146,7 @@
     <script>
         function setModal(id){
             $('#confirmBtn').attr('onclick','$("'+id+'").submit();');
-            $('#deleteMarquee').modal();
+            $('#deleteNotice').modal();
         }
     </script>
 @endpush

@@ -14,8 +14,8 @@
 				<li>
 					<div class="ticker-body">
                         <div class="flex">
-                            <div class="event-image">
-                                <img src="{{asset('upload/events/thumbs/01.jpg')}}" alt="" style="aspect-ratio:16/10; width:100px; object-fit:contain;">
+                            <div class="event-image mr-2">
+                                <img src="{{asset('storage/images/event/thumbnail/thumb/'.$event->thumbnail)}}" alt="" style="aspect-ratio:16/10; width:100px; object-fit:contain;">
                             </div>
                             <div class="event-content">
                                 <div class="event-title">
@@ -36,6 +36,6 @@
 
 			</ul>
 		</div>
-		<div class="btn btn-success" style="width: 100%; "> <a style="color: white;" href="#notice"><i class='fas fa-file-alt' style='font-size:14px;color:white'></i> More Events..</a> </div>
+		<div class="btn btn-success" style="width: 100%; "> <a style="color: white;" href="#events"><i class='fas fa-file-alt' style='font-size:14px;color:white'></i> More Events..</a> </div>
 	</div>
 </div>

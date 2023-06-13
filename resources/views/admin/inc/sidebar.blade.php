@@ -303,6 +303,9 @@
                             <li class="{{ ($page_name === 'Dashboard') ? 'active' : '' }}">
                                 <a href="/users/profile"> Dashboard </a>
                             </li>
+                            <li class="{{ ($page_name === 'All Notice') ? 'active' : '' }}">
+                                <a href="{{route('admin.cms.notice.index')}}"> Notice </a>
+                            </li>
                             <li class="{{ ($page_name === 'All Sliders') ? 'active' : '' }}">
                                 <a href="{{route('admin.cms.slider.index')}}"> Slider </a>
                             </li>
@@ -311,6 +314,12 @@
                             </li>
                             <li class="{{ ($page_name === 'All News') ? 'active' : '' }}">
                                 <a href="{{route('admin.cms.news.index')}}"> News </a>
+                            </li>
+                            <li class="{{ ($page_name === 'All Marquee') ? 'active' : '' }}">
+                                <a href="{{route('admin.cms.marquee.index')}}"> Marquee </a>
+                            </li>
+                            <li class="{{ ($page_name === 'All Event') ? 'active' : '' }}">
+                                <a href="{{route('admin.cms.event.index')}}"> Event </a>
                             </li>
                         </ul>
                     </li>

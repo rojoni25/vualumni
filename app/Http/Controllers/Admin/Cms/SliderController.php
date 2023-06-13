@@ -103,7 +103,7 @@ class SliderController extends Controller
         $slider->url = urlSanitizer($request->url);
         $slider->group = $request->group;
         $slider->category = $request->category;
-        $slider->pinned = $request->pinned ?? 0;
+        $slider->pinned = $request->pinned ? 1 : 0;
         $slider->photo = $newName;
         $slider->added_by = auth()->id();
         $slider->expiration = $request->expiration != '' ? date('Y-m-d H:i:s', strtotime($request->expiration)) : null;
@@ -207,7 +207,7 @@ class SliderController extends Controller
         $slider->url = urlSanitizer($request->url);
         $slider->group = $request->group;
         $slider->category = $request->category;
-        $slider->pinned = $request->pinned ?? 0;
+        $slider->pinned = $request->pinned ? 1 : 0;
         $slider->added_by = auth()->id();
         $slider->expiration = $request->expiration != '' ? date('Y-m-d H:i:s', strtotime($request->expiration)) : null;
         $slider->save();

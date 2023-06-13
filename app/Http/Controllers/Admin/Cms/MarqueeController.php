@@ -19,7 +19,7 @@ class MarqueeController extends Controller
         $data['category_name'] = "cms";
         $data['has_scrollspy'] = 0;
         $marquees = Marquee::where(['status' => 1])->latest()->get();
-        return view('admin.cms.news.list', $data, compact('marquees'));
+        return view('admin.cms.marquee.list', $data, compact('marquees'));
     }
 
     /**
@@ -28,6 +28,11 @@ class MarqueeController extends Controller
     public function create()
     {
         //
+        $data['page_name'] = "All Marquee";
+        $data['title'] = "Add Marquee";
+        $data['category_name'] = "cms";
+        $data['has_scrollspy'] = 0;
+        return view('admin.cms.marquee.form', $data);
     }
 
     /**
@@ -36,6 +41,18 @@ class MarqueeController extends Controller
     public function store(Request $request)
     {
         //
+        $marquee = new Marquee();
+        $marquee->title = $request->title;
+        $marquee->content_url = $request->content_url;
+        $marquee->category = $request->category;
+        $marquee->group = $request->group;
+        $marquee->expiration = $request->expiration != '' ? date('Y-m-d H:i:s', strtotime($request->expiration)) : null;
+        $marquee->pinned = $request->pinned ? 1 : 0;
+        $marquee->added_by = auth()->id();
+        $marquee->status = 1;
+        $marquee->save();
+
+        return redirect()->route('admin.cms.marquee.index')->with('success','Marquee added successfully');
     }
 
     /**
@@ -52,6 +69,12 @@ class MarqueeController extends Controller
     public function edit(string $id)
     {
         //
+        $data['page_name'] = "All Marquee";
+        $data['title'] = "Edit Marquee";
+        $data['category_name'] = "cms";
+        $data['has_scrollspy'] = 0;
+        $marquee = Marquee::find($id);
+        return view('admin.cms.marquee.form', $data,compact('marquee'));
     }
 
     /**
@@ -60,7 +83,20 @@ class MarqueeController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $marquee = Marquee::find($id);
+        $marquee->title = $request->title;
+        $marquee->content_url = $request->content_url;
+        $marquee->category = $request->category;
+        $marquee->group = $request->group;
+        $marquee->expiration = $request->expiration != '' ? date('Y-m-d H:i:s', strtotime($request->expiration)) : null;
+        $marquee->pinned = $request->pinned ? 1 : 0;
+        $marquee->added_by = auth()->id();
+        $marquee->status = 1;
+        $marquee->save();
+
+        return redirect()->route('admin.cms.marquee.index')->with('success','Marquee updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -68,5 +104,8 @@ class MarqueeController extends Controller
     public function destroy(string $id)
     {
         //
+        $marquee = Marquee::find($id);
+        $marquee->delete();
+        return redirect()->route('admin.cms.marquee.index')->with('success','Marquee deleted successfully');
     }
 }

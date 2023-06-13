@@ -106,7 +106,7 @@ class NewsController extends Controller
         $news->content = $request->content;
         $news->group = $request->group;
         $news->category = $request->category;
-        $news->pinned = $request->pinned ?? 0;
+        $news->pinned = $request->pinned  ? 1 : 0;
         $news->thumbnail = $newName;
         $news->added_by = auth()->id();
         $news->news_date = $request->news_date != '' ? date('Y-m-d H:i:s', strtotime($request->news_date)) : date('Y-m-d H:i:s');
@@ -134,8 +134,7 @@ class NewsController extends Controller
         $data['title'] = "Edit News";
         $data['category_name'] = "cms";
         $data['has_scrollspy'] = 0;
-        $users = User::whereHas('membershipInfo')->get();
-        return view('admin.cms.news.form',$data,compact('users','news'));
+        return view('admin.cms.news.form',$data,compact('news'));
     }
 
     /**
@@ -205,7 +204,7 @@ class NewsController extends Controller
         $news->content = $request->content;
         $news->group = $request->group;
         $news->category = $request->category;
-        $news->pinned = $request->pinned ?? 0;
+        $news->pinned = $request->pinned ? 1 : 0;
         $news->added_by = auth()->id();
         $news->news_date = $request->news_date != '' ? date('Y-m-d H:i:s', strtotime($request->news_date)) : date('Y-m-d H:i:s');
         $news->save();

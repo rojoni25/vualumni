@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('file');
-            $table->string('url');
-            $table->text('content');
+            $table->string('file')->nullable();
+            $table->string('url')->nullable();
+            $table->text('content')->nullable();
             $table->string('group')->default('web');
             $table->string('category')->default('general');
             $table->foreignId('added_by')->constrained('users')->nullable();
             $table->integer('pinned')->default(0);
             $table->integer('status')->default(1);
             $table->timestamp('expiration')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,7 +1,9 @@
 <?php
 use App\Http\Controllers\Admin\AssociationMemberController;
+use App\Http\Controllers\Admin\Cms\EventController;
 use App\Http\Controllers\Admin\Cms\MarqueeController;
 use App\Http\Controllers\Admin\Cms\NewsController;
+use App\Http\Controllers\Admin\Cms\NoticeController;
 use App\Http\Controllers\Admin\Cms\SliderController;
 use App\Http\Controllers\Admin\Cms\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
@@ -42,6 +44,12 @@ Route::prefix('cms')->name('cms.')->group(function(){
 // /** Testimonial */
     Route::resource('testimonial',TestimonialController::class);
 
-// /** Testimonial */
+// /** Marquee */
     Route::resource('marquee',MarqueeController::class);
+
+    // /** Notice */
+    Route::resource('notice',NoticeController::class);
+
+    // /** Event */
+    Route::resource('event',EventController::class);
 });

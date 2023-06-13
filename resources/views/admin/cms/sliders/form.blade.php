@@ -47,7 +47,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend">https://</span>
                                     </div>
-                                    <input type="url" class="form-control" id="url" name="url" placeholder="Link"
+                                    <input type="text" class="form-control" id="url" name="url" placeholder="Link"
                                         value="{{$slider->url??old('url') }}">
                                     <div class="valid-feedback">
                                         Looks good!
