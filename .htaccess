@@ -1,0 +1,7 @@
+
+RewriteOptions inherit
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^admission\.vu\.edu\.bd$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.admission\.vu\.edu\.bd$
+RewriteRule ^/?$ "http\:\/\/202\.5\.52\.152\:8083\/front\/applicant\/home" [R=301,L]

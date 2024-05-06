@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PaymentApproved extends Notification
+class BirthdayWishes extends Notification
 {
     use Queueable;
 
@@ -35,17 +35,9 @@ class PaymentApproved extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Payment to AAVU')
-                    ->view('extraViews.email_template',['message'=>'Congratulations']);
-    }
-
-    public function toDatabase(object $notifiable)
-    {
-        return [
-            "user_id"=> $notifiable->id,
-            'message' => 'Your payment has been accepted',
-            'url' => '/dashboard/',
-        ];
+        ->subject('Happy Birthday!')
+        ->line('Happy Birthday, '.$notifiable->name.'!')
+        ->line('Wishing you a fantastic day filled with joy and happiness.');
     }
 
     /**

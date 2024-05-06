@@ -214,6 +214,7 @@ class AssociationMemberController extends Controller
         $user = new User();
         $user->name = $member->name;
         $user->email = $member->email;
+        $user->dob = $member->dob;
         $user->password = Hash::make($member->mobile);
         $user->save();
         Auth::attempt(['email' => $user->email, 'password' => $member->mobile]);
