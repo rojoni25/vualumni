@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAssociationMemberRequest;
 use App\Models\AssociationMember;
 use App\Models\AssociationMemberEducation;
 use App\Models\AssociationMemberOcupation;
+use App\Models\Auth\UserRole;
 use App\Models\User;
 use Carbon\Carbon;
 use Hash;
@@ -23,6 +24,7 @@ class AssociationMemberController extends Controller
     public function index()
     {
         //
+        return view('web.blank');
     }
 
     /**
@@ -47,6 +49,7 @@ class AssociationMemberController extends Controller
     public function show(AssociationMember $associationMember)
     {
         //
+        dd($associationMember);
     }
 
     /**
@@ -78,22 +81,37 @@ class AssociationMemberController extends Controller
         $member = null;
         $education = null;
         $ocupation = null;
-        if (session('membership_id') != "") {
+        if (Auth::check()) {
+            $member = AssociationMember::where('email', Auth::user()->email)->first();
+            session(['active_form' => $member->completed_steps + 2]);
+        } else if (session('membership_id') != "") {
             $member = AssociationMember::find(session('membership_id'));
-
             session(['membership_id' => '']);
             session(['active_form' => $member->completed_steps + 2]);
+        }
+        if ($member && $member->completed_steps == 4) {
+            return redirect()->route('member.profile');
         }
         return view('web.aavu.form', compact('member', 'education', 'ocupation'));
     }
     public function savePersonalInfo(Request $request)
     {
+        if ($request->uid) {
+            $uservalidate = $this->validateSelfUser($request->uid);
+            if (!$uservalidate) {
+                return back()->with('error', 'invalid Student ID / Employee ID');
+            }
+        }
         // dd(session('membership_id'));
         if (isset($request->id)) {
             $member = AssociationMember::find($request->id);
         } else {
-            $member = new AssociationMember();
+            $member = AssociationMember::where('email', $request->email)->first();
+            if (!$member) {
+                $member = new AssociationMember();
+            }
         }
+        $member->uid = $request->uid ?? null;
         $member->name = $request->name;
         $member->name_bangla = $request->name_bangla;
         $member->dob = $request->dob;
@@ -112,11 +130,25 @@ class AssociationMemberController extends Controller
         // $member->signature = $request->signature;
         // $member->photo = $request->photo;
         $member->nid = $request->nid;
+        $member->marriage_date = $request->marriage_date;
         // $member->nid_photo = $request->nid_photo;
         // $member->status = $request->status;
         $member->completed_steps = max(1, $member->completed_steps);
         $member->save();
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            $user = new User();
+            $user->name = $member->name;
+            $user->email = $member->email;
+            $user->password = Hash::make($member->mobile);
+            $user->save();
+            $userRole = new UserRole();
+            $userRole->user_id = $user->id;
+            $userRole->role_id = 1;
+            $userRole->save();
+        }
+        Auth::attempt(['email' => $user->email, 'password' => $member->mobile]);
+
         // if($user){
         //     session(['membership_id' => $member->id]);
         //     session(['active_form' => 2]);
@@ -154,19 +186,19 @@ class AssociationMemberController extends Controller
     public function saveOcupationInfo(Request $request)
     {
         // dd(session('membership_id'));
-
-        $ocupation = AssociationMemberOcupation::firstOrNew(['membership_id' => $request->membership_id]);
-        $ocupation->organization = $request->organization;
-        $ocupation->position = $request->position;
-        $ocupation->from_date = $request->from_date;
-        $ocupation->to_date = $request->to_date;
-        $ocupation->continuing = $request->continuing == 'on' ? 1 : 0;
-        $ocupation->address = $request->address;
-        $ocupation->contact_number = $request->contact_number;
-        $ocupation->email = $request->email;
-        $ocupation->web = $request->web;
-        $ocupation->save();
-
+        if ($request->organization) {
+            $ocupation = AssociationMemberOcupation::firstOrNew(['membership_id' => $request->membership_id]);
+            $ocupation->organization = $request->organization;
+            $ocupation->position = $request->position;
+            $ocupation->from_date = $request->from_date;
+            $ocupation->to_date = $request->to_date;
+            $ocupation->continuing = $request->continuing == 'on' ? 1 : 0;
+            $ocupation->address = $request->address;
+            $ocupation->contact_number = $request->contact_number;
+            $ocupation->email = $request->email;
+            $ocupation->web = $request->web;
+            $ocupation->save();
+        }
         $member = AssociationMember::find($request->membership_id);
         $member->completed_steps = max(3, $member->completed_steps);
         $member->save();
@@ -178,55 +210,53 @@ class AssociationMemberController extends Controller
     public function saveUploads(Request $request)
     {
 
+        $member = AssociationMember::find($request->membership_id);
         $prefixes = md5(time() . rand(100, 999));
         // photo
-        $location = public_path('upload/member_photos/photos');
-        $img = $prefixes . '.' . $request->photo->getClientOriginalExtension();
-        $photo = $img;
-        $request->photo->move($location, $img);
+        if ($request->photo) {
+            $location = public_path('upload/member_photos/photos');
+            $img = $prefixes . '.' . $request->photo->getClientOriginalExtension();
+            $photo = $img;
+            $request->photo->move($location, $img);
+            $member->photo = 'upload/member_photos/photos/' . $photo;
+        }
 
         // signature
-        $location = public_path('upload/member_photos/signatures');
-        $img = $prefixes . '.' . $request->signature->getClientOriginalExtension();
-        $signature = $img;
-        $request->signature->move($location, $img);
+        if ($request->signature) {
+            $location = public_path('upload/member_photos/signatures');
+            $img = $prefixes . '.' . $request->signature->getClientOriginalExtension();
+            $signature = $img;
+            $request->signature->move($location, $img);
+            $member->signature = 'upload/member_photos/signatures/' . $signature;
+        }
 
         // nid
-        $location = public_path('upload/member_photos/nids');
-        $img = $prefixes . '.' . $request->nid_photo->getClientOriginalExtension();
-        $nid = $img;
-        $request->nid_photo->move($location, $img);
+        if ($request->nid_photo) {
+            $location = public_path('upload/member_photos/nids');
+            $img = $prefixes . '.' . $request->nid_photo->getClientOriginalExtension();
+            $nid = $img;
+            $request->nid_photo->move($location, $img);
+            $member->nid_photo = 'upload/member_photos/nids/' . $nid;
+        }
 
         // certificate
-        $location = public_path('upload/member_photos/certificates');
-        $img = $prefixes . '.' . $request->certificate->getClientOriginalExtension();
-        $certificate = $img;
-        $request->certificate->move($location, $img);
-
-        $member = AssociationMember::find($request->membership_id);
-        $member->photo = 'upload/member_photos/photos/' . $photo;
-        $member->signature = 'upload/member_photos/signatures/' . $signature;
-        $member->nid_photo = 'upload/member_photos/nids/' . $nid;
-        $member->certificate = 'upload/member_photos/certificates/' . $certificate;
+        if ($request->certificate) {
+            $location = public_path('upload/member_photos/certificates');
+            $img = $prefixes . '.' . $request->certificate->getClientOriginalExtension();
+            $certificate = $img;
+            $request->certificate->move($location, $img);
+            $member->certificate = 'upload/member_photos/certificates/' . $certificate;
+        }
         $member->completed_steps = max(4, $member->completed_steps);
         $member->save();
 
-        $user = new User();
-        $user->name = $member->name;
-        $user->email = $member->email;
-        $user->dob = $member->dob;
-        $user->password = Hash::make($member->mobile);
-        $user->save();
-        Auth::attempt(['email' => $user->email, 'password' => $member->mobile]);
         session(['membership_id' => $member->id]);
         session(['active_form' => 6]);
-
-
         // return view('web.aavu.pdf_form',compact('member'));
-
         // dd($member);
         // return redirect()->back();
-        return $this->generate_pdf($member, $prefixes);
+        return redirect()->route('member.profile', $member);
+        // return $this->generate_pdf($member, $prefixes);
     }
 
     public function generate_pdf($member, $prefixes)
@@ -376,5 +406,77 @@ class AssociationMemberController extends Controller
 
         // Get file back from storage with the give header informations
         return Storage::disk('public')->download($documentFileName, 'Request', $header); //
+    }
+
+    public function profile()
+    {
+        $page_name = "profile";
+        $title = "Profile";
+        $category_name = "Association Member";
+        $has_scrollspy = 0;
+        $user = Auth::user();
+        $member = AssociationMember::where('email', Auth::user()->email)->first();
+        return view('user.profile.index', compact('user', 'member', 'page_name', 'title', 'category_name', 'has_scrollspy'));
+    }
+    public function profile1()
+    {
+        $page_name = "profile";
+        $title = "Profile";
+        $category_name = "Association Member";
+        $has_scrollspy = 0;
+        $user = Auth::user();
+        $member = AssociationMember::where('email', Auth::user()->email)->first();
+        return view('user.profile.index', compact('user', 'member', 'page_name', 'title', 'category_name', 'has_scrollspy'));
+    }
+
+    public function validateUser(Request $request)
+    {
+        if (strlen($request->uid) < 6) {
+            $data = file_get_contents('https://directory.vu.edu.bd/api/userinfo/' . $request->uid);
+            if (json_decode($data)->status == 0) {
+                return false;
+            } else {
+                return $data;
+            }
+        } elseif (strlen($request->uid) > 6 && $request->uid < 193000000) {
+            $data = file_get_contents('http://160.187.25.3/api/students/em1/show?roll=' . $request->uid);
+            if (json_decode($data)->status == 0) {
+                return false;
+            } else {
+                return $data;
+            }
+        } elseif ($request->uid > 193000000) {
+            $data = file_get_contents('http://160.187.25.3/api/students/show?roll=' . $request->uid);
+            if (json_decode($data)->status == 0) {
+                return false;
+            } else {
+                return $data;
+            }
+        }
+    }
+    public function validateSelfUser($uid)
+    {
+        if (strlen($uid) < 6) {
+            $data = file_get_contents('https://directory.vu.edu.bd/api/userinfo/' . $uid);
+            if (json_decode($data)->status == 0) {
+                return false;
+            } else {
+                return $data;
+            }
+        } elseif (strlen($uid) > 6 && $uid < 193000000) {
+            $data = file_get_contents('http://160.187.25.3/api/students/em1/show?roll=' . $uid);
+            if (json_decode($data)->status == 0) {
+                return false;
+            } else {
+                return $data;
+            }
+        } elseif ($uid > 193000000) {
+            $data = file_get_contents('http://160.187.25.3/api/students/show?roll=' . $uid);
+            if (json_decode($data)->status == 0) {
+                return false;
+            } else {
+                return $data;
+            }
+        }
     }
 }

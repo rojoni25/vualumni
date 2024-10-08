@@ -1,6 +1,7 @@
 @include('admin.inc.function')
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ setTitle($title) }}</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('admin/storage/img/favicon.ico')}}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('admin/storage/img/favicon.ico') }}" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
@@ -18,12 +19,18 @@
     @include('admin.inc.styles')
     @stack('styles')
 </head>
-<body {{ ($has_scrollspy) ? scrollspy($scrollspy_offset) : '' }} class=" {{ ($page_name === 'alt_menu') ? 'alt-menu' : '' }} {{ ($page_name === 'error404') ? 'error404 text-center' : '' }} {{ ($page_name === 'error500') ? 'error500 text-center' : '' }} {{ ($page_name === 'error503') ? 'error503 text-center' : '' }} {{ ($page_name === 'maintenence') ? 'maintanence text-center' : '' }}">
+
+<body {{ $has_scrollspy ? scrollspy($scrollspy_offset) : '' }}
+    class=" {{ $page_name === 'alt_menu' ? 'alt-menu' : '' }} {{ $page_name === 'error404' ? 'error404 text-center' : '' }} {{ $page_name === 'error500' ? 'error500 text-center' : '' }} {{ $page_name === 'error503' ? 'error503 text-center' : '' }} {{ $page_name === 'maintenence' ? 'maintanence text-center' : '' }}">
 
     <!-- BEGIN LOADER -->
-    <div id="load_screen"> <div class="loader"> <div class="loader-content">
-        <div class="spinner-grow align-self-center"></div>
-    </div></div></div>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
     <!--  END LOADER -->
 
     @include('admin.inc.navbar')
@@ -55,4 +62,5 @@
     @stack('scripts')
 
 </body>
+
 </html>

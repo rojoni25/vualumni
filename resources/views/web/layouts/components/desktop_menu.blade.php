@@ -1,29 +1,20 @@
 <div class="l-gnav l-gnav-en">
 
-    <div class="nav-top-inner">
-
-        <div class="l-gnav__top">
-
-            <p class="l-gnav__home"><a href="https://vu.edu.bd">VU HOME</a></p>
-
-            {{-- <a href="https://vu.edu.bd/student_corner" class="l-gnav__focus"><img src="https://vu.edu.bd/img/elements/student_corner.jpg" alt="Student Corner"></a> --}}
-            <a href="#" data-toggle="modal" data-target="#studentLogin" class="l-gnav__focus"><img src="https://vu.edu.bd/img/elements/student_login_bar.jpg" alt="Student Corner"></a>
-
-        </div>
-
-    </div>
-
-
-
     <nav>
 
         <div class="nav-bottom-inner">
 
             <ul class="l-gnav__list">
 
+                <li class="l-gnav__item l-gnav__item-15">
+
+                    <a href="https://vu.edu.bd">VU Home</a>
+
+
+                </li>
                 <li class="l-gnav__item l-gnav__item-01">
 
-                    <a href="#">About</a>
+                    <a href="#">About AAVU</a>
 
                     <div class="p-sub-menu p-sub-menu-01">
 
@@ -34,14 +25,10 @@
                                 <div class="l-col-xs-6 l-col-sm-4">
 
                                     <ul class="p-sub-menu__list">
-                                        <li><a href="{{route('web.post.show-post',['aims-and-objectives'])}}"><i class="fa fa-caret-right"></i> Aims & Objectives</a></li>
-
-                                        {{-- <li><a href="https://vu.edu.bd/the-university/at-a-glance"><i class="fa fa-caret-right"></i> At a Glance</a></li>
-
-                                        <li><a href="https://vu.edu.bd/the-university/history-of-vu"><i class="fa fa-caret-right"></i> History of VU</a></li>
-
-                                        <li><a href="https://vu.edu.bd/the-university/why-vu"><i class="fa fa-caret-right"></i> Why VU?</a></li> --}}
-
+                                        <li>
+                                            <a href="{{ route('web.post.show-post', ['aims-and-objectives']) }}"><i
+                                                    class="fa fa-caret-right"></i> Aims & Objectives</a>
+                                        </li>
                                     </ul>
 
                                 </div>
@@ -94,11 +81,15 @@
 
                                     <ul class="p-sub-menu__list">
 
-                                        <li><a href="{{route('association-members.index')}}"><i class="fa fa-caret-right"></i> Members</a></li>
-                                        <li><a href="{{route('membership-information')}}"><i class="fa fa-caret-right"></i> Membership Information</a></li>
+                                        <li><a href="{{ route('committee.index') }}"><i class="fa fa-caret-right"></i>
+                                                Committies</a></li>
+                                        <li><a href="{{ route('association-members.index') }}"><i
+                                                    class="fa fa-caret-right"></i> Members</a></li>
+                                        <li><a href="{{ route('membership-information') }}"><i
+                                                    class="fa fa-caret-right"></i> Membership Information</a></li>
 
-                                        <li><a href="{{route('aavu.register')}}"><i class="fa fa-caret-right"></i> Sign up</a></li>
-
+                                        <li><a href="{{ route('aavu.register') }}"><i class="fa fa-caret-right"></i>
+                                                Become a VUian</a></li>
 
                                     </ul>
 
@@ -118,7 +109,7 @@
 
                                     <figure class="p-sub-menu_img">
 
-                                        <img src="{{asset('aavu_logo_02.png')}}" alt="">
+                                        <img src="{{ asset('aavu_logo_02.png') }}" alt="">
 
                                     </figure>
 
@@ -144,8 +135,70 @@
 
                                 <div class="l-col-xs-6 l-col-sm-4">
                                     <ul class="p-sub-menu__list">
-                                        <li><a href="$"><i class="fa fa-caret-right"></i> National</a></li>
-                                        <li><a href="https://vu.edu.bd/academics/departments"><i class="fa fa-caret-right"></i> International</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right"></i> National</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right"></i> International</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="l-col-xs-6 l-col-sm-4">
+                                    {{-- <ul class="p-sub-menu__list">
+                                        <li><a href="https://vu.edu.bd/academics/academic-calendar"><i class="fa fa-caret-right"></i> Academic Calendar</a></li>
+
+                                        <li><a href="https://vu.edu.bd/uploads/downloads/transcript_certificate_application_form.pdf"><i class="fa fa-caret-right"></i> Transcript &amp; Certificate Application</a></li>
+
+
+
+                                    </ul> --}}
+
+                                </div>
+
+                                <div class="l-col-xs-6 l-col-sm-4">
+
+                                    {{-- <ul class="p-sub-menu__list"> --}}
+
+                                    {{-- <a href="https://vu.edu.bd/academics/faculty/science-engineering">Faculty of Science and Engineering</a> --}}
+
+                                    {{-- <li><a href="https://vu.edu.bd/economics">Department of Computer Science and Engineering</a></li> --}}
+
+                                    {{-- <li><a href="https://vu.edu.bd/english">Department of Electrical and Electronic Engineering</a></li> --}}
+
+                                    {{-- <li><a href="https://vu.edu.bd/jcms">Department of Pharmacy </a></li> --}}
+
+                                    {{-- <li><a href="https://vu.edu.bd/socilolgy">Department of Public Health</a></li>													 --}}
+
+                                    {{-- </ul> --}}
+
+
+
+                                    <figure class="p-sub-menu_img">
+
+                                        {{-- <img src="https://vu.edu.bd/uploads/media/images/DSC_0825.jpg" alt=""> --}}
+
+                                    </figure>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+                <li class="l-gnav__item l-gnav__item-09">
+
+                    <a href="#">Job Network</a>
+
+                    <div class="p-sub-menu p-sub-menu-09">
+
+                        <div class="p-sub-menu__inner">
+
+                            <div class="l-row l-gutter-50">
+
+                                <div class="l-col-xs-6 l-col-sm-4">
+                                    <ul class="p-sub-menu__list">
+                                        <li><a href="#"><i class="fa fa-caret-right"></i> National</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right"></i> International</a></li>
                                     </ul>
                                 </div>
 
@@ -195,7 +248,7 @@
 
                 </li>
 
-                <li class="l-gnav__item l-gnav__item-04">
+                <li class="l-gnav__item l-gnav__item-0">
 
                     <a href="#">News & Events</a>
 

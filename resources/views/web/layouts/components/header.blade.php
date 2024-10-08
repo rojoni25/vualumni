@@ -1,32 +1,35 @@
 <header class="l-header" style="background-color: #fff;">
     <div class="header-inner">
-        <div class="l-header__logo-en" style="display: flex;" title="AAVU">
-            <a href="{{url('/')}}" style="display:flex;">
-                <img style="object-fit: contain; width: 95%; height: 95%;" src="{{asset('aavu_logo_02.png')}}" alt="Alumni Association of Varendra University" class="u-img-responsive">
-                {{-- <div><p>Alumni Association of Varendra University</p> <p>Non-Communal, Non-Political and Non-Profitable Organization</p></div> --}}
-            </a>
-            <!-- <div class="mobile-hide" style="text-align: center; font-size: 18px;font-weight: 900; position: absolute; right: -300px;top: 15px;">
-                <a href="https://convocation.vu.edu.bd" title="1st Convocation" class="blink-light">
-                    <div style="opacity: 1; color:black; font-family: 'Comic Sans MS, Comic Sans', cursive; display: flex; flex-direction: column;">
-                        <span class="blinkmain" style="font-size: 30px;">
-                            1st Convocation
-                        </span>
+        <div class="l-header__logo-en" style="display: flex; {{ Agent::isMobile() ? 'width:unset;' : 'width:500px;' }}"
+            title="AAVU">
+            <a href="{{ url('/') }}" style="display:flex; align-items:center;">
+                <img style="object-fit: contain; {{ Agent::isMobile() ? 'width:50px;' : 'width: 100px;' }} height: 95%; margin-right:13px;"
+                    src="{{ asset('aavu_logo_02.png') }}" alt="Alumni Association of Varendra University"
+                    class="u-img-responsive">
+                @if (!Agent::isMobile())
+                    <div>
+                        <h1 style="color:#c44d2d;">{{ 'Alumni Association of Varendra University (AAVU)' }}</h1>
                     </div>
-                </a>
-            </div> -->
+                @else
+                    <h1 hidden>{{ 'Alumni Association of Varendra University (AAVU)' }}</h1>
+                @endif
+            </a>
         </div>
         <!-- ul class="l-header__link">
                 <li class="l-header__link-item l-header__link-item-01"><a href="#content">Skip to content</a></li>
                 <li class="l-header__link-item l-header__link-item-03"><a href="general/contact.html">Contact</a></li>
             </ul>  -->
-        <!-- <div class="l-header__student-login">
-                <span class=""><a href="#" data-toggle="modal" data-target="#studentLogin"><img src="https://vu.edu.bd/uploads/media/images/student_login.png" alt="Open a new window"></a></span>
-            </div>
-            <div class="l-header__payment-instruction">
+        <!--<div class="l-header__payment-instruction">
                 <span class=""><a href="https://vu.edu.bd/notice/details/1983" target="_blank"><img style="border: 1px solid; padding: 7px; border-radius: 5px;" src="https://vu.edu.bd/uploads/media/images/payment-inspng2.png" alt="Open a new window"></a></span>
             </div> -->
 
         <div class="l-header__language">
+            <div class="l-header__student-login" style="position: unset;">
+                <span class=""><a class="btn btn-success"
+                        style="border-radius: 25px; color: white; text-decoration: none;"
+                        href="{{ route('aavu.register') }}">Become a
+                        VUian</a></span>
+            </div>
             <!-- <a href="#" class="is-open">Language</a>
                 <ul class="l-header__language-list" style="color: black;">
                     <li><a href="/ja/index.html"><span lang="ja">日本語</span></a></li>
@@ -36,17 +39,18 @@
 
             <ul class="l-footer__body-link" style="margin-right:10px; display:flex;">
                 <!-- <li class="l-footer__body-link-item">Social Links: </li> -->
-                <li class="l-footer__body-link-item mobile-hide">
+                {{-- <li class="l-footer__body-link-item mobile-hide">
                     <a href="https://vu.edu.bd/portfolio">
                         <img src="https://vu.edu.bd/img/emplogin.png" alt="">
                     </a>
-                </li>
-                <li class="l-footer__body-link-item desktop-hide">
+                </li> --}}
+                {{-- <li class="l-footer__body-link-item desktop-hide">
                     <a href="#" data-toggle="modal" data-target="#studentLogin">
-                        <img style="width:135px;" src="https://vu.edu.bd/img/elements/student_login_bar.jpg" alt="Student Corner">
+                        <img style="width:135px;" src="https://vu.edu.bd/img/elements/student_login_bar.jpg"
+                            alt="Student Corner">
                     </a>
-                </li>
-                <li class="l-footer__body-link-item">
+                </li> --}}
+                {{-- <li class="l-footer__body-link-item">
                     <a href="https://outlook.office.com">
                         <i class="fas fa-envelope" style="padding: 10px;"></i>
                     </a>
@@ -70,7 +74,7 @@
                     <a href="https://www.linkedin.com/company/varendra-university/">
                         <i class="fab fa-linkedin-in" style="padding: 10px;"></i>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
 
