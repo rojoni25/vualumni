@@ -27,7 +27,7 @@
             <div class="l-header__student-login" style="position: unset;">
                 <span class=""><a class="btn btn-success"
                         style="border-radius: 25px; color: white; text-decoration: none;"
-                        href="{{ route('aavu.register') }}">Become a
+                        href="{{ route('aavu.register') }}">Become a Proud
                         VUian</a></span>
             </div>
             <!-- <a href="#" class="is-open">Language</a>

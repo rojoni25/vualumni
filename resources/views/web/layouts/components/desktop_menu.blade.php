@@ -89,7 +89,7 @@
                                                     class="fa fa-caret-right"></i> Membership Information</a></li>
 
                                         <li><a href="{{ route('aavu.register') }}"><i class="fa fa-caret-right"></i>
-                                                Become a VUian</a></li>
+                                                Become a Proud VUian</a></li>
 
                                     </ul>
 
