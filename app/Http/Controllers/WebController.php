@@ -21,7 +21,11 @@ class WebController extends Controller
         $marquees = Marquee::where(['group' => 'web', 'status' => 1])->where('expiration', '>', date('y-m-d H:i:s'))->get();
         $notices = Notice::where(['group' => 'web', 'status' => 1])->latest()->take(10)->get();
         $events = Event::where(['group' => 'web', 'status' => 1])->latest()->take(10)->get();
+<<<<<<< HEAD
         $testimonials = Testimonial::where(['video' => null, 'status' => 1])->orderBy('order','ASC')->take(10)->get();
+=======
+        $testimonials = Testimonial::where(['video' => null, 'status' => 1])->take(10)->get();
+>>>>>>> 193370be94089d285b21a11ea9a620d3cebf1748
         return view('web.home', compact('sliders', 'marquees', 'notices', 'testimonials', 'events'));
     }
 
