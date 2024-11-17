@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,6 +14,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('member_id')->constrained('association_members');
             $table->bigInteger('membership_id')->nullable();
+            $table->string('transaction_id')->nullable();
             $table->string('method')->nullable();
             $table->string('payment_for')->nullable();
             $table->double('amount');

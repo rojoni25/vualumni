@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,32 +14,33 @@
 
     @stack('css')
     <link rel="shortcut icon" href="https://vu.edu.bd/img/ico/favicon.ico">
-    <link rel="stylesheet" href="{{asset('assets/uikit/css/uikit.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/uikit/css/uikit.min.css') }}">
     <link rel="stylesheet" href="https://vu.edu.bd/css/bootstrap.css">
     <link rel="stylesheet" href="https://vu.edu.bd/css/breakingNews.css">
-    <link rel="stylesheet" href="https://vu.edu.bd/css/main.css?t={{time()}}">
-    <link rel="stylesheet" href="https://vu.edu.bd/css/main2.css?t={{time()}}">
+    <link rel="stylesheet" href="https://vu.edu.bd/css/main.css?t={{ time() }}">
+    <link rel="stylesheet" href="https://vu.edu.bd/css/main2.css?t={{ time() }}">
     <link rel="stylesheet" href="https://vu.edu.bd/css/camera.css">
-    <link rel="stylesheet" href="https://vu.edu.bd/css/style.css?t={{time()}}">
+    <link rel="stylesheet" href="https://vu.edu.bd/css/style.css?t={{ time() }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="https://vu.edu.bd/css/aly.css">
-    <link rel="stylesheet" href="https://vu.edu.bd/css/styles.css?t=1659260650">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}?t={{ now() }}">
     <link rel="stylesheet" href="https://vu.edu.bd/css/custom-slike.css?t=1659260650">
     <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.7" type="text/css" media="screen" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Updock&display=swap">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.7"></script>
-    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -73,6 +75,10 @@
             padding: 2px 14px;
             font-size: 12px;
             letter-spacing: 1px;
+        }
+
+        .header-inner {
+            display: flex;
         }
     </style>
     <style type="text/css">
@@ -170,38 +176,40 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #c44d2d;
         }
+
         .page-body {
-		max-width: none !important;
-	}
+            max-width: none !important;
+        }
     </style>
     @if (Agent::isMobile())
-    <style>
+        <style>
+            .l-gnav-sub-inner {
+                height: 100%;
+            }
 
-    .l-gnav-sub-inner{
-        height: 100%;
-    }
-    .l-gnav-sub{
-        height: 60vh;
-    }
-    .dropdown-menu>li>a{
-        font-size: 12px;
-    }
-    .l-header__logo-en{
-        height: 100%;
-    }
-    </style>
+            .l-gnav-sub {
+                height: 60vh;
+            }
 
+            .dropdown-menu>li>a {
+                font-size: 12px;
+            }
+
+            .l-header__logo-en {
+                height: 100%;
+            }
+        </style>
     @else
-
     @endif
     @stack('style')
 </head>
 
 <body class="vu_top_eng" style="overflow: hidden;">
-    <h1 hidden>{{ $title ?? 'Varendra University' }}</h1>
+    <h1 hidden>{{ $title ?? 'Alumni Association of Varendra University (AAVU)' }}</h1>
     {{-- .l-wrapper --}}
     <div class="l-wrapper">
-        <noscript>JavaScript is required to display the Varendra University website correctly. Please enable JavaScript
+        <noscript>JavaScript is required to display the Alumni Association of Varendra University (AAVU) website
+            correctly. Please enable JavaScript
             in your browser settings and refresh the page.</noscript>
 
         {{-- HEADER --}}
@@ -216,8 +224,7 @@
         {{-- /GNAV --}}
 
         @if (Agent::isMobile())
-
-        @include('web.layouts.components.mobile_menu')
+            @include('web.layouts.components.mobile_menu')
         @endif
 
         {{-- MAIN --}}
@@ -230,8 +237,8 @@
     @include('web.layouts.components.footer')
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{asset('assets/uikit/js/uikit.min.js')}}"></script>
-<script src="{{asset('assets/uikit/js/uikit-icons.min.js')}}"></script>
+<script src="{{ asset('assets/uikit/js/uikit.min.js') }}"></script>
+<script src="{{ asset('assets/uikit/js/uikit-icons.min.js') }}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
@@ -335,8 +342,7 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         dotsClass: 'news-dots',
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
@@ -409,8 +415,7 @@
         focusOnSelect: true,
         pauseOnHover: true,
         pauseOnFocus: true,
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
@@ -473,8 +478,7 @@
 
         // dotsClass: 'news-dots',
 
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
@@ -557,4 +561,5 @@
 </script>
 @stack('js')
 @stack('script')
+
 </html>

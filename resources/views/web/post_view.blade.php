@@ -15,12 +15,14 @@
             background-color: wheat;
             padding: 10px;
             margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         #postTitle h2 {
             font-size: 16px;
             line-height: 20px;
             font-weight: 700;
+            text-transform: uppercase;
         }
 
         #postContent p {
@@ -29,44 +31,61 @@
 
         #postContent ol li:before {
             counter-increment: list;
-            content: counter(list, lower-alpha) " ) ";
-            width: 30px;
+            content: counter(list, upper-alpha) " ) ";
+            /* width: 30px; */
             text-align: right;
             margin-right: 10px;
         }
 
         #postContent ol li {
             font-size: 16px;
-            line-height: 25px;
-            list-style-type: lower-alpha;
+            line-height: 35px;
+            list-style-type: upper-alpha;
             list-style: none;
             counter-increment: withBrackets;
             display: flex;
         }
     </style>
     @if (Agent::isMobile())
-    <style>
-        #postContent ol {
-            font-size: 12px;
-            margin-left: 10px;
-            list-style: none;
-            list-style-type: lower-alpha;
-            counter-reset: list;
+        <style>
+            #postContent ol {
+                font-size: 12px !important;
+                margin-left: 10px;
+                list-style: none;
+                list-style-type: upper-alpha;
+                counter-reset: list;
 
-        }
-    </style>
+            }
 
+            #postContent ol li :before {
+                font-size: 13px !important;
+                line-height: 30px !important;
+                list-style-type: upper-alpha;
+                list-style: none;
+                counter-increment: withBrackets;
+                display: flex;
+            }
+
+            #postContent ol li span {
+                font-size: 13px !important;
+                line-height: 30px !important;
+                list-style-type: upper-alpha;
+                list-style: none;
+                counter-increment: withBrackets;
+                display: flex;
+            }
+        </style>
     @else
         <style>
             #postContent ol {
-            font-size: 16px;
-            margin-left: 15px;
-            text-align: justify;
-            list-style: none;
-            list-style-type: lower-alpha;
-            counter-reset: list;
+                font-size: 16px;
+                margin-left: 15px;
+                text-align: justify;
+                list-style: none;
+                list-style-type: upper-alpha;
+                counter-reset: list;
 
-        }
+            }
         </style>
     @endif
 @endpush

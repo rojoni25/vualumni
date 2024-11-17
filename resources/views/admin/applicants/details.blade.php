@@ -133,10 +133,9 @@
                                     <li class="contacts-block__item">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-calendar">
-                                            <rect x="3" y="4" width="18" height="18"
-                                                rx="2" ry="2"></rect>
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+                                            <rect x="3" y="4" width="18" height="18" rx="2"
+                                                ry="2"></rect>
                                             <line x1="16" y1="2" x2="16" y2="6"></line>
                                             <line x1="8" y1="2" x2="8" y2="6"></line>
                                             <line x1="3" y1="10" x2="21" y2="10"></line>
@@ -321,11 +320,11 @@
                         <h3 class="">Attachments</h3>
                         <div class="bio-skill-box">
                             <div class="row">
-                                <div class="col-12 col-xl-6 col-lg-12 mb-xl-2 mb-2 ">
+                                <div class="mb-2 col-12 col-xl-6 col-lg-12 mb-xl-2 ">
                                     <div class="d-flex b-skills">
                                         <div class="text-center">
                                             <h5>Photo of NID Card</h5>
-                                            <div id="demo-test-gallery" class="demo-gallery proof-image text-center"
+                                            <div id="demo-test-gallery" class="text-center demo-gallery proof-image"
                                                 data-pswp-uid="1">
                                                 <a class="" href="{{ asset($associationMember->nid_photo) }}"
                                                     data-size="1600x1068"
@@ -386,11 +385,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                <div class="mb-5 col-12 col-xl-6 col-lg-12 mb-xl-5 ">
                                     <div class="d-flex b-skills">
                                         <div class="text-center">
                                             <h5>Certificate of Varendra University</h5>
-                                            <div id="demo-test-gallery" class="demo-gallery proof-image text-center"
+                                            <div id="demo-test-gallery" class="text-center demo-gallery proof-image"
                                                 data-pswp-uid="1">
                                                 <a class="" href="{{ asset($associationMember->certificate) }}"
                                                     data-size="1600x1068"
@@ -402,46 +401,49 @@
                                                     <figure>VU Certificate of {{ $associationMember->name }}</figure>
                                                     @if ($associationMember->certificate_approval == 'Approved' || $associationMember->certificate_approval == 'Rejected')
                                                         <span
-                                                            class="{{ $associationMember->certificate_approval == 'Approved' ? 'approval-a' : 'approval-r' }}">{{ $associationMember->certificate_approval}}</span>
+                                                            class="{{ $associationMember->certificate_approval == 'Approved' ? 'approval-a' : 'approval-r' }}">{{ $associationMember->certificate_approval }}</span>
                                                     @endif
                                                 </a>
                                             </div>
                                             @if ($associationMember->status != 'Approved')
-                                            <div>
-                                                <a href="javascript:void();" data-toggle="modal" data-target="#certificateApprovalModal"
-                                                    class="btn btn-success mb-4 mr-2 {{ $associationMember->certificate_approval == 'Approved' ? 'disabled' : '' }}">
-                                                    <div class="icon-container">
-                                                        <svg style="height:17px; width:17px; color: white; margin:unset;"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" class="feather feather-check-square">
-                                                            <polyline points="9 11 12 14 22 4"></polyline>
-                                                            <path
-                                                                d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11">
-                                                            </path>
-                                                        </svg>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript:void();" data-toggle="modal"
-                                                    data-target="#certificateDeclineModal"
-                                                    class="btn btn-danger mb-4 mr-2 {{ $associationMember->certificate_approval == 'Rejected' ? 'disabled' : '' }}">
-                                                    <div class="icon-container">
-                                                        <svg style="height:17px; width:17px; color: white; margin:unset;"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" class="feather feather-x-circle">
-                                                            <circle cx="12" cy="12" r="10">
-                                                            </circle>
-                                                            <line x1="15" y1="9" x2="9"
-                                                                y2="15"></line>
-                                                            <line x1="9" y1="9" x2="15"
-                                                                y2="15"></line>
-                                                        </svg>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                                <div>
+                                                    <a href="javascript:void();" data-toggle="modal"
+                                                        data-target="#certificateApprovalModal"
+                                                        class="btn btn-success mb-4 mr-2 {{ $associationMember->certificate_approval == 'Approved' ? 'disabled' : '' }}">
+                                                        <div class="icon-container">
+                                                            <svg style="height:17px; width:17px; color: white; margin:unset;"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-check-square">
+                                                                <polyline points="9 11 12 14 22 4"></polyline>
+                                                                <path
+                                                                    d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                    </a>
+                                                    <a href="javascript:void();" data-toggle="modal"
+                                                        data-target="#certificateDeclineModal"
+                                                        class="btn btn-danger mb-4 mr-2 {{ $associationMember->certificate_approval == 'Rejected' ? 'disabled' : '' }}">
+                                                        <div class="icon-container">
+                                                            <svg style="height:17px; width:17px; color: white; margin:unset;"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-x-circle">
+                                                                <circle cx="12" cy="12" r="10">
+                                                                </circle>
+                                                                <line x1="15" y1="9" x2="9"
+                                                                    y2="15"></line>
+                                                                <line x1="9" y1="9" x2="15"
+                                                                    y2="15"></line>
+                                                            </svg>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -454,7 +456,7 @@
                     <div class="widget-content widget-content-area">
                         <h3 class="">Payment Validation</h3>
                         <div class="row justify-content-center">
-                            <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 p-1">
+                            <div class="p-1 mb-5 col-12 col-xl-6 col-lg-12 mb-xl-5">
 
                                 <div class="card bg-dark">
                                     <div class="card-body" style="line-height: 30px;">
@@ -476,7 +478,7 @@
                                         </div>
                                         <div>
                                             <span>Payment Date:
-                                            </span><span><b>{{ $associationMember->registrationPayment->payment_date->format('d M Y') ?? 'Not Set' }}</b></span>
+                                            </span><span><b>{{ $associationMember->registrationPayment->payment_date && $associationMember->registrationPayment->payment_date->format('d M Y') ?? 'Not Set' }}</b></span>
                                         </div>
                                         @if ($associationMember->registrationPayment)
                                             @forelse ($associationMember->registrationPayment->statement as $key => $statement)
@@ -489,7 +491,7 @@
                                         @endif
                                         <div>
                                             <span>Confirmation Date:
-                                            </span><span><b>{{ $associationMember->registrationPayment->confirmation_date->format('d M Y h:i a') ?? 'Not Set' }}</b></span>
+                                            </span><span><b>{{ $associationMember->registrationPayment->confirmation_date && $associationMember->registrationPayment->confirmation_date->format('d M Y h:i a') ?? 'Not Set' }}</b></span>
                                         </div>
                                         <div>
                                             <span>Confirmed By:
@@ -499,7 +501,7 @@
                                 </div>
                             </div>
                             @if ($associationMember->status != 'Approved' && $associationMember->payment_approval != 'Approved')
-                            <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 p-1">
+                                <div class="p-1 mb-5 col-12 col-xl-6 col-lg-12 mb-xl-5">
                                     <div class="card bg-dark ">
                                         <div class="card-body">
                                             <form
@@ -537,8 +539,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endif
-                            <div class="col-md-12 mb-4  text-center">
+                            @endif
+                            <div class="mb-4 text-center col-md-12">
                                 @if ($associationMember->payment_approval != 'Approved')
                                     <button class="btn btn-success" type="submit"
                                         onclick="$('#submitPayment').click();">Validate Payment</button>
@@ -548,12 +550,16 @@
                         </div>
                     </div>
                 </div>
-                @if ($associationMember->certificate_approval == 'Approved' && $associationMember->nid_approval == 'Approved' && $associationMember->payment_approval == 'Approved')
-                    <a href="javascript:void();" data-toggle="modal" data-target="#membershipApprovalModal" class="btn btn-success mb-4 mr-2 btn-lg">Approve</a>
+                @if (
+                    $associationMember->certificate_approval == 'Approved' &&
+                        $associationMember->nid_approval == 'Approved' &&
+                        $associationMember->payment_approval == 'Approved')
+                    <a href="javascript:void();" data-toggle="modal" data-target="#membershipApprovalModal"
+                        class="mb-4 mr-2 btn btn-success btn-lg">Approve</a>
                 @endif
                 <a href="{{ route('admin.association-members.print', $associationMember->id) }}" target="_blank"
-                    class="btn btn-info mb-4 mr-2 btn-lg">Print</a>
-                <a href="#" class="btn btn-danger mb-4 mr-2 btn-lg">Reject</a>
+                    class="mb-4 mr-2 btn btn-info btn-lg">Print</a>
+                <a href="#" class="mb-4 mr-2 btn btn-danger btn-lg">Reject</a>
             </div>
         </div>
     </div>
