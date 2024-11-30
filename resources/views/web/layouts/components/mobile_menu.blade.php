@@ -39,7 +39,11 @@
                                     class="fa fa-caret-right"></i> Membership Information</a></li>
                         <li class="dropdown-items"><a href="{{ route('aavu.register') }}"><i
                                     class="fa fa-caret-right"></i>
+<<<<<<< HEAD
+                                Become a VUian</a></li>
+=======
                                 Become a Proud VUian</a></li>
+>>>>>>> 193370be94089d285b21a11ea9a620d3cebf1748
                     </ul>
                 </li>
                 <li class="l-gnav-sub__item dropdown"><a href="#" class="dropdown-toggle"
