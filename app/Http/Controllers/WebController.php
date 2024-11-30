@@ -23,7 +23,8 @@ class WebController extends Controller
         $notices = Notice::where(['group' => 'web', 'status' => 1])->latest()->take(10)->get();
         $events = Event::where(['group' => 'web', 'status' => 1])->latest()->take(10)->get();
         $testimonials = Testimonial::where(['video' => null, 'status' => 1])->orderBy('order','ASC')->take(10)->get();
-        return view('web.home', compact('sliders', 'marquees', 'notices', 'testimonials', 'events'));
+        $newses = News::where(['status' => 1])->take(6)->get();
+        return view('web.home', compact('sliders', 'marquees', 'notices', 'testimonials', 'events','newses'));
     }
 
     /**
