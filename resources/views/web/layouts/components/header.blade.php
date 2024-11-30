@@ -1,20 +1,20 @@
 <header class="l-header" style="background-color: #fff;">
     <div class="header-inner">
-        <div class="l-header__logo-en" style="display: flex; {{ Agent::isMobile() ? 'width:unset;' : 'width:500px;' }}"
+        <div class="l-header__logo-en" style="display: flex;"
             title="AAVU">
             <a href="{{ url('/') }}" style="display:flex; align-items:center;">
                 <img style="object-fit: contain; {{ Agent::isMobile() ? 'width:50px;' : 'width: 100px;' }} height: 95%; margin-right:13px;"
                     src="{{ asset('aavu_logo_02.png') }}" alt="Alumni Association of Varendra University"
                     class="u-img-responsive">
-                @if (!Agent::isMobile())
-                    <div>
-                        <h1 style="color:#c44d2d;">{{ 'Alumni Association of Varendra University (AAVU)' }}</h1>
-                    </div>
-                @else
-                    <h1 hidden>{{ 'Alumni Association of Varendra University (AAVU)' }}</h1>
-                @endif
-            </a>
-        </div>
+                </a>
+            </div>
+            @if (!Agent::isMobile())
+                <div class="flex items-center content-center justify-center">
+                    <h1 style="color:#c44d2d; font-size:x-large; font-weight:600;">{{ 'Alumni Association of Varendra University (AAVU)' }}</h1>
+                </div>
+            @else
+                <h1 hidden>{{ 'Alumni Association of Varendra University (AAVU)' }}</h1>
+            @endif
         <!-- ul class="l-header__link">
                 <li class="l-header__link-item l-header__link-item-01"><a href="#content">Skip to content</a></li>
                 <li class="l-header__link-item l-header__link-item-03"><a href="general/contact.html">Contact</a></li>

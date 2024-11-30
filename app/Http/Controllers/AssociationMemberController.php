@@ -101,6 +101,9 @@ class AssociationMemberController extends Controller
             if (!$uservalidate) {
                 return back()->with('error', 'invalid Student ID / Employee ID');
             }
+            else{
+                $request->name = json_decode($uservalidate)->data->name;
+            }
         }
         // dd(session('membership_id'));
         if (isset($request->id)) {

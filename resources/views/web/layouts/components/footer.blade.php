@@ -37,20 +37,16 @@
             <div class="text-left col-md-6 col-sm-6">
 
                 <!-- <a href="https://vu.edu.bd/"><img style="background-color: white; padding: 5px 10px;" src="https://vu.edu.bd/img/logo.png" class="l-footer__body-logo" alt="Varendra University"></a> -->
-
-
-
-
-
                 <ul class="l-footer__body-link">
-
                     <!-- <li class="l-footer__body-link-item">Social Links: </li> -->
-
-                    <li class="l-footer__body-link-item"><a href="https://www.facebook.com/vu.edu"><i
-                                class="fab fa-facebook-f" style="padding: 10px;"></i></a></li>
-
-                    <li class="l-footer__body-link-item"><a href="https://www.youtube.com/c/VarendraUniversityBD"><i
-                                class="fab fa-youtube" style="padding: 10px;"></i></a></li>
+                    <li class="l-footer__body-link-item">
+                        <a href="https://www.facebook.com/vu.edu">
+                            <i class="fab fa-facebook-f" style="padding: 10px;"></i>
+                        </a>
+                    </li>
+                    <li class="l-footer__body-link-item">
+                        <a href="https://www.youtube.com/c/VarendraUniversityBD">
+                            <i class="fab fa-youtube" style="padding: 10px;"></i></a></li>
 
                     <li class="l-footer__body-link-item"><a href="https://twitter.com/varendrau"><i
                                 class="fab fa-twitter" style="padding: 10px;"></i></a></li>
@@ -58,31 +54,15 @@
                     <li class="l-footer__body-link-item"><a
                             href="https://www.linkedin.com/company/varendra-university/"><i class="fab fa-linkedin-in"
                                 style="padding: 10px;"></i></a></li>
-
-
-
                 </ul>
 
-
-
                 <ul>
-
-                    <li style="margin: 5px;"> <i class="fa fa-map-marker pull-left"
-                            style="margin-right: 10px;"></i>Varendra University,Rajshahi Bypass Road, Chandrima, Paba,
-                        Rajshahi-6204</li>
-
+                    <li style="margin: 5px;"> <i class="fa fa-map-marker pull-left" style="margin-right: 10px;"></i>Varendra University,Rajshahi Bypass Road, Chandrima, Paba,Rajshahi-6204</li>
                     <li style="margin: 5px;"> <i class="fa fa-phone" style="margin-right: 10px;"></i>+8802588867274</li>
-
                     <li style="margin: 5px;"> <i class="fa fa-phone" style="margin-right: 10px;"></i>+8802588867459</li>
-
                     <li style="margin: 5px;"> <i class="fa fa-phone" style="margin-right: 10px;"></i>09677601070</li>
-
-                    <li style="margin: 5px;"> <i class="fa fa-mobile" style="margin-right: 10px;"></i>+8801730406501-3,
-                        +8801730406590</li>
-
-                    <li style="margin: 5px;"> <i class="fa fa-envelope" style="margin-right: 10px;"></i>info@vu.edu.bd
-                    </li>
-
+                    <li style="margin: 5px;"> <i class="fa fa-mobile" style="margin-right: 10px;"></i>+8801730406501-3, +8801730406590</li>
+                    <li style="margin: 5px;"> <i class="fa fa-envelope" style="margin-right: 10px;"></i>alumni@vu.edu.bd</li>
                 </ul>
 
             </div>
@@ -93,16 +73,12 @@
 
             <div class="col-md-6 col-sm-6 text_right"
                 style="/*position: absolute;*/ bottom: 0px; right: 0px; text-align: right;">
-
-
                 <a style="bottom:20px; " href="https://vu.edu.bd/"><img
                         style=" padding: 0 0 5px 0px; border-bottom: 2px solid #c44d2d; display:unset;"
                         src="https://vu.edu.bd/img/whitelogo.png" class="l-footer__body-logo"
                         alt="Varendra University"></a>
-
                 <address class="l-footer-copyright" style="bottom:20px; ">Developed and Maintained by IT Office, VU<br>
-                    © 2012-2022 Varendra University</address>
-
+                    © 2012-{{now()->format('Y')}} Varendra University</address>
             </div>
 
 

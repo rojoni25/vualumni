@@ -37,9 +37,16 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+    public function show(News $news,$id,$slug)
     {
         //
+        $news = News::find($id);
+        if($news && $news->slug == $slug){
+            return view('web.news.show',compact('news'));
+        }
+        else{
+            return view('web.blank');
+        }
     }
 
     /**

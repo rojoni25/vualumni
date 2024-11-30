@@ -185,11 +185,11 @@
                     </div>
 
                 </li>
-                <li class="l-gnav__item l-gnav__item-09">
+                <li class="l-gnav__item l-gnav__item-04">
 
                     <a href="#">Job Network</a>
 
-                    <div class="p-sub-menu p-sub-menu-09">
+                    <div class="p-sub-menu p-sub-menu-04">
 
                         <div class="p-sub-menu__inner">
 
@@ -248,11 +248,11 @@
 
                 </li>
 
-                <li class="l-gnav__item l-gnav__item-0">
+                <li class="l-gnav__item l-gnav__item-05">
 
-                    <a href="#">News & Events</a>
+                    <a href="{{route('web.news.index')}}">News & Events</a>
 
-                    <div class="p-sub-menu p-sub-menu-04">
+                    <div class="p-sub-menu p-sub-menu-05">
 
                         <div class="p-sub-menu__inner">
 
@@ -264,7 +264,7 @@
 
                                         <li><a href="#"><i class="fa fa-caret-right"></i> Upcoming Events</a></li>
                                         <li><a href="#"><i class="fa fa-caret-right"></i> Recent Events</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right"></i> News</a></li>
+                                        <li><a href="{{route('web.news.index')}}"><i class="fa fa-caret-right"></i> News</a></li>
 
                                     </ul>
 
@@ -299,7 +299,7 @@
 
                 </li>
 
-                <li class="l-gnav__item l-gnav__item-05">
+                <li class="l-gnav__item l-gnav__item-06">
                     <a href="https://convocation.vu.edu.bd">Convocation</a>
                 </li>
             </ul>

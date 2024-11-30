@@ -28,6 +28,9 @@
     .slider-caption{
         z-index: 444;
     }
+    .testimonial-texts{
+        font-size: 16px;
+    }
 </style>
 @endpush
 @section('main')
@@ -38,14 +41,15 @@
 	</div>
 </div>
 <div class="container mx-auto" style="max-width: 1280px;">
-    <div class="grid md:grid-cols-2 gap-4">
+    @include('web.gadgets.news_list')
+    {{-- <div class="grid md:grid-cols-2 gap-4">
         <div class="w-full" style="margin-bottom: 10px;">
             @include('web.gadgets.notice_list')
         </div>
         <div class="w-full" style="margin-bottom: 10px;">
             @include('web.gadgets.event_list')
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="container mx-auto" style="max-width: 1280px;">
     <div class="w-full">

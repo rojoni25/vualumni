@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Web\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Str;
 
 class TestimonialController extends Controller
 {
@@ -43,16 +46,51 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         //
-        $user = User::find($request->user);
-        $testimonial = new Testimonial();
-        $testimonial->user_id = $user->id;
-        $testimonial->user_name = $user->name;
-        $testimonial->designation = $user->membershipInfo->ocupation->position.', '.$user->membershipInfo->ocupation->organization;
-        $testimonial->user_avatar = $user->membershipInfo->photo;
-        $testimonial->tagline  = $request->tagline;
-        $testimonial->content  = $request->content;
-        $testimonial->added_by  = auth()->id();
-        $testimonial->save();
+        if($request->user != 2){
+            $user = User::find($request->user);
+            $testimonial = new Testimonial();
+            $testimonial->user_id = $user->id;
+            $testimonial->user_name = $user->name;
+            $testimonial->designation = $user->membershipInfo->ocupation->position.', '.$user->membershipInfo->ocupation->organization;
+            $testimonial->user_avatar = $user->membershipInfo->photo;
+            $testimonial->tagline  = $request->tagline;
+            $testimonial->content  = $request->content;
+            $testimonial->added_by  = auth()->id();
+            $testimonial->save();
+        }
+        else{
+            if ($request->hasFile('user_avatar')) {
+                $photo = $request->file('user_avatar');
+                $filename = $photo->getClientOriginalName();
+                $extension = $photo->getClientOriginalExtension();
+                $newName = fileNameSanitizer($extension, Str::uuid());
+                // $path = $photo->store('photos'); // Store the file in the 'photos' directory
+                $image = Image::make($photo);
+                $width = $image->width();
+                $height = $image->height();
+                $size = $image->filesize();
+                $image->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                // $image->save('slider/large/'.$newName);
+                $directory = 'public/images/testimonial/users';
+                if (!Storage::exists($directory)) {
+                    Storage::makeDirectory($directory);
+                }
+                Storage::put($directory . '/' . $newName, $image->stream()->__toString());
+
+
+            $testimonial = new Testimonial();
+            $testimonial->user_id = $request->user;
+            $testimonial->user_name = $request->user_name;
+            $testimonial->designation = $request->designation;
+            $testimonial->user_avatar = 'storage/images/testimonial/users/'.$newName;
+            $testimonial->tagline  = $request->tagline;
+            $testimonial->content  = $request->content;
+            $testimonial->added_by  = auth()->id();
+            $testimonial->save();
+        }}
+
         return redirect()->route('admin.cms.testimonial.index')->with('success','Testimonial has been added successfully');
     }
 
@@ -85,18 +123,53 @@ class TestimonialController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $user = User::find($request->user);
         $testimonial = Testimonial::find($id);
-        $testimonial->user_id = $user->id;
-        $testimonial->user_name = $user->name;
-        $testimonial->designation = $user->membershipInfo->ocupation->position.', '.$user->membershipInfo->ocupation->organization;
-        $testimonial->user_avatar = $user->membershipInfo->photo;
-        $testimonial->tagline  = $request->tagline;
-        $testimonial->content  = $request->content;
-        $testimonial->added_by  = auth()->id();
-        $testimonial->save();
+        if($request->user != 2){
+            $user = User::find($request->user);
+            $testimonial->user_id = $user->id;
+            $testimonial->user_name = $user->name;
+            $testimonial->designation = $user->membershipInfo->ocupation->position.', '.$user->membershipInfo->ocupation->organization;
+            $testimonial->user_avatar = $user->membershipInfo->photo;
+            $testimonial->tagline  = $request->tagline;
+            $testimonial->content  = $request->content;
+            $testimonial->added_by  = auth()->id();
+            $testimonial->save();
+        }
+        else{
+            if ($request->hasFile('user_avatar')) {
+                $photo = $request->file('user_avatar');
+                $filename = $photo->getClientOriginalName();
+                $extension = $photo->getClientOriginalExtension();
+                $newName = fileNameSanitizer($extension, Str::uuid());
+                // $path = $photo->store('photos'); // Store the file in the 'photos' directory
+                $image = Image::make($photo);
+                $width = $image->width();
+                $height = $image->height();
+                $size = $image->filesize();
+                $image->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                // $image->save('slider/large/'.$newName);
+                $directory = 'public/images/testimonial/users';
+                if (!Storage::exists($directory)) {
+                    Storage::makeDirectory($directory);
+                }
+                Storage::put($directory . '/' . $newName, $image->stream()->__toString());
+
+
+                $testimonial->user_avatar = 'storage/images/testimonial/users/'.$newName;
+
+            }
+            $testimonial->user_id = $request->user;
+            $testimonial->user_name = $request->user_name;
+            $testimonial->designation = $request->designation;
+            $testimonial->tagline  = $request->tagline;
+            $testimonial->content  = $request->content;
+            $testimonial->added_by  = auth()->id();
+            $testimonial->save();
         return redirect()->route('admin.cms.testimonial.index')->with('success','Testimonial has been added successfully');
     }
+}
 
     /**
      * Remove the specified resource from storage.

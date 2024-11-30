@@ -1,7 +1,7 @@
 <div class="vu-gradient">
 	<a href="#notice">
-		<div class="show-all-btn">
-			<h4 style="color: white; font-weight: 700; text-align: left; "> <i class="fas fa-exclamation-circle"></i> NOTICE</h4>
+		<div class="show-all-btn w-full">
+			<h4 style="color: white; font-weight: 700; text-align: center; "> <i class="fas fa-exclamation-circle"></i> NOTICE</h4>
 		</div>
 	</a>
 </div>
@@ -17,6 +17,12 @@
 					</div>
 				</li>
                 @empty
+                <div>
+                    <div class="flex justify-center content-center items-center" style="height: 315px; color:#c44d2d; font-size:18px; font-weight:700;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        No Recent Notice
+                    </div>
+                </div>
                 @endforelse
 			</ul>
 		</div>

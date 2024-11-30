@@ -65,6 +65,25 @@
             .inner-image {
                 position: relative;
             }
+
+            .news-title{
+
+            }
+            .title-text{
+                font-size: 35px;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .date-time{
+                color: #c44d2d;
+            }
+            .feature-image{
+                margin-bottom:25px;
+            }
+            .feature-image img{
+                width: 100%;
+
+            }
         </style>
     @endif
 @endpush
@@ -77,41 +96,23 @@
         </div>
     </div>
     <div class="container">
-        <div class="row mt-10">
-            <div class="col-md-8 p-5">
-                <div class="widget-card">
-                    {{-- <div class="card-header">
-                        News
-                    </div> --}}
-                    <div class="row">
-                        @foreach ($newses as $news)
-                            @if ($loop->iteration == 1)
-                                <div class="col-md-8 first-news">
-                                    <a href="{{ route('web.news.show', [$news, $news->slug]) }}">
-                                        <div class="image-cantainer">
-                                            <div class="inner-image">
-                                                <img class="full-width-image"
-                                                    src="{{ asset('storage/images/news/large/' . $news->thumbnail) }}"
-                                                    alt="">
-                                                <div class="caption-title">
-                                                    <span class="caption-text">{{ $news->title }}</span>
-                                                    <p class="caption-date">{{ $news->news_date->format('l, d F Y') }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @else
-                                <div class="col-md-4 common-news">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="news-title">
+                    <span class="title-text">{{$news->title}}</span>
+                    <p class="date-time">Published: {{$news->news_date->format('l, d F Y')}}</p>
+                </div>
+                <div class="news-content">
+                    <div class="feature-image">
+                        <img src="{{ asset('storage/images/news/large/' . $news->thumbnail) }}" alt="">
+                    </div>
 
-                                </div>
-                            @endif
-                        @endforeach
+                    <div class="news-text">
+                        @php
+                            echo $news->content;
+                        @endphp
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 p-5">
-                <div class="widget-card"></div>
             </div>
         </div>
     </div>

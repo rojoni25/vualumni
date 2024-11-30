@@ -33,7 +33,8 @@
                             <div class="col-md-4 mb-4">
                                 <label for="user_name">Member</label>
                                 <select class="form-control basic" name="user" value="{{old('user')}}" required>
-                                    <option value="">--Choose--</option>
+                                    <option value="">--Choose Member--</option>
+                                    <option value="2">Non Registered Member</option>
                                     @forelse ($users as $user)
                                         <option value="{{ $user->id }}" {{(!empty($testimonial)&&$testimonial->user_id == $user->id)?'selected':''}}>{{ $user->name }}</option>
                                     @empty
@@ -45,6 +46,51 @@
                                 <div
                                     class="invalid-feedback"{{ $errors->has('user_name') ? 'style="display:block;"' : '' }}>
                                     Please choose user.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="user_name">Name</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="user_name" name="user_name"
+                                        placeholder="Name of the User" value="{{ $testimonial->user_name ?? old('user_name') }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Add A User Name
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="user_name">Designation & Orgainzation</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="designation" name="designation"
+                                        placeholder="Designation and Organization" value="{{ $testimonial->designation ?? old('designation') }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Include Designation
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-4">
+                                <div class="custom-file-container" data-upload-id="myFirstImage">
+                                    <label>Upload Photo</label>
+                                    <input type="file" name="user_avatar" id="input-photo" value="{{ old('user_avatar') }}"
+                                        class="dropify" {{Route::currentRouteName() === 'admin.cms.testimonial.edit'?'data-default-file='.asset($testimonial->user_avatar).'':'required'}} data-allowed-file-extensions="jpg jpeg png gif"
+                                        data-max-file-size="2M" />
+                                    <div class="custom-file-container__image-preview"></div>
+                                    <div>
+                                        <ul>
+                                            <li>Image dimension must be 300pxX300px</li>
+                                            <li>Image size must not exceed 2Mb</li>
+                                            <li>No need to put image if you want to use default</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -69,6 +115,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <button class="btn btn-primary mt-3" type="submit">Submit form</button>
                     </form>
                 </div>

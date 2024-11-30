@@ -2309,7 +2309,8 @@ Layout
 @media only screen and (max-width: 450px) {
     .l-header__language {
         right: 5px;
-        top: 20px;
+        /* top: 20px; */
+        top: 7px;
         font-size: 1.0rem;
         vertical-align: middle;
     }

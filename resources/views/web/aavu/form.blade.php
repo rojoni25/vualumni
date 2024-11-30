@@ -106,8 +106,8 @@
                                             {{ isset($member->membership_type) && $member->membership_type == 'Regular Member' ? 'checked' : '' }}
                                             {{ !isset($member->membership_type) ? 'checked' : '' }}>
                                         <strong>Regular Member</strong>: Subscription/fee for alumni living in Bangladesh
-                                        will be BDT 1,000.00 (one thousand taka) and for overseas alumni will be USD 20.00
-                                        (twenty US USD 10.00 per year.</label></div>
+                                        will be BDT 500.00 (five hundred taka) and for overseas alumni will be USD 10.00
+                                        (ten USD) per year.</label></div>
                             </li>
                             <li class="flex items-center" style="">
                                 <div class="p-1 radio"><label for="membership_type2"
@@ -257,6 +257,7 @@
                     var det = JSON.parse(details);
                     if (det.status == 1) {
                         $("#name").val(det.data.name);
+                        $("#name").attr('disabled',true);
                         $("#dob").val(det.data.dob);
                         $("#blood_group").val(det.data.blood_group);
                         $("#email").val(det.data.personal_email);

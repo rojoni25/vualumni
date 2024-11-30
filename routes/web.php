@@ -92,7 +92,8 @@ Route::middleware([
 Route::get('association_member/profile', [AssociationMemberController::class, 'profile1'])->name('member.profile1');
 
 
-Route::get('/news', [NewsController::class, 'index']);
+Route::get('/news', [NewsController::class, 'index'])->name('web.news.index');
+Route::get('/news/{id}/{slug}', [NewsController::class, 'show'])->name('web.news.show');
 Route::get('/{slug}', [PostController::class, 'showPost'])->name('web.post.show-post');
 
 Route::post('/upload-image', 'ImageController@upload')->name('upload.image');
