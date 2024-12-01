@@ -57,9 +57,8 @@
                                     style="{{ Agent::isMobile() ? 'font-size:12px;' : 'font-size:17px;' }} line-height:30px;"><span
                                         style="font-family:&quot;Times New Roman&quot;,serif">
                                         <strong>Regular Member (RM):</strong> Membership fee for an Alumni living in
-                                        Bangladesh will be Tk. 1000 (one thousand) and for an overseas Alumni will be US $20
-                                        (twenty US dollars) only for 2 years. Renewal fee (after 2 years) will be 500/$10 Tk
-                                        per year. </span></span></span></span></li>
+                                        Bangladesh will be Tk. 500 (five hundred) and for an overseas Alumni will be US $10
+                                        (ten US dollars) per year. </span></span></span></span></li>
                 </ol>
             </li>
         </ol>
