@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Mpdf\Mpdf;
 use Storage;
 
@@ -103,7 +104,35 @@ class AssociationMemberController extends Controller
             }
             else{
                 $request->name = json_decode($uservalidate)->data->name;
+                $validation = Validator::make($request->all(),[
+                    'name_bangla' => 'required',
+                    'dob' => 'required',
+                    'blood_group' => 'required',
+                    'gender' => 'required',
+                    'nid' => 'required',
+                    'email' => 'required',
+                    'membership_type' => 'required',
+                    'mobile' => 'required',
+                    'agreement' => 'required',
+                ]);
             }
+        }else{
+            $validation = Validator::make($request->all(),[
+                'name' => 'required',
+                'name_bangla' => 'required',
+                'dob' => 'required',
+                'blood_group' => 'required',
+                'gender' => 'required',
+                'nid' => 'required',
+                'email' => 'required',
+                'membership_type' => 'required',
+                'mobile' => 'required',
+                'agreement' => 'required',
+            ]);
+        }
+        if ($validation->fails()) {
+            dd($validation->errors()->first());
+            return back()->with('error', $validation->errors()->first());
         }
         // dd(session('membership_id'));
         if (isset($request->id)) {

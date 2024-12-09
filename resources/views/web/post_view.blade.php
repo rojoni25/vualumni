@@ -31,7 +31,7 @@
 
         #postContent ol li:before {
             counter-increment: list;
-            content: counter(list, upper-alpha) " ) ";
+            content: counter(list, upper-alpha) ")";
             /* width: 30px; */
             text-align: right;
             margin-right: 10px;
@@ -88,6 +88,16 @@
             }
         </style>
     @endif
+    <style>
+        ol,
+        ol li {
+            list-style-type: unset;
+        }
+
+        .well {
+            padding: 30px;
+        }
+    </style>
 @endpush
 @section('main')
     <div class="container">
